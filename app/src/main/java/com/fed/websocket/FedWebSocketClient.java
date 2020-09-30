@@ -16,8 +16,7 @@ import java.nio.ByteBuffer;
 
 
 public class FedWebSocketClient extends WebSocketClient {
-//
-//
+
     private static final String TAG = "FedWebSocketClient";
     private static final Message clientMessage=new Message();
     private MultiRegression multiRegression = new MultiRegression();
