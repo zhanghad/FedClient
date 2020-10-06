@@ -1,100 +1,51 @@
 package com.fed;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 
-import com.fed.websocket.WebSocketService;
+import androidx.appcompat.app.AppCompatActivity;
 import com.fedclient.R;
+import androidx.appcompat.app.AppCompatActivity;
 
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    public static final int UPDATE = 1;
-    private static final String TAG = "MainActivity";
-    public static final String getUrl = "http://192.168.1.3:8080/fedserver/hello";
-    public static final String postUrl = "http://192.168.1.3:8080/fedserver/model";
-
-
-    private Handler handler = new Handler() {
-        public void handleMessage(Message message) {
-            switch (message.what) {
-                case UPDATE:
-
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
-
-
-
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        Button btn_get = findViewById(R.id.btn1);
-        Button btn_startService = findViewById(R.id.btn_startservice);
-        Button btn_stopService = findViewById(R.id.btn_stopservice);
 
+        EditText userName=findViewById(R.id.userName);
+        EditText Password=findViewById(R.id.passwd);
+        Button btn_register = findViewById(R.id.btn_register);
+        Button btn_login=findViewById(R.id.btnLogin); //获取xml中的元素
 
-        btn_get.setOnClickListener(this);
-        btn_startService.setOnClickListener(this);
-        btn_stopService.setOnClickListener(this);
+        String username = getIntent().getStringExtra("username");//从注册界面传过来的数据
+        String password = getIntent().getStringExtra("psw");
+        userName.setText(username);
+        Password.setText(password);
 
+        //注册控件的点击事件
+        btn_register.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //为了跳转到注册界面，并实现注册功能
+                Intent intent=new Intent(MainActivity.this,RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        Log.d(TAG, "onCreate: ");
+        //登录按钮的点击事件
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,HomeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-
-    @Override
-    public void onClick(View view) {
-
-        Intent webSocketIntent=new Intent(MainActivity.this, WebSocketService.class);
-
-        switch (view.getId()) {
-            case R.id.btn1:
-/*                //http post测试
-                INDArray test = Nd4j.zeros(1, 3);
-                try {
-                    HttpUtil.httpRequestPost(postUrl, Nd4j.toByteArray(test), new okhttp3.Callback() {
-                        @Override
-                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                            Log.d(TAG, "onFailure: ");
-                        }
-
-                        @Override
-                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                            Log.d(TAG, "onResponse: " + response.body().string());
-                        }
-                    });
-                } catch (IOException e) {
-                    Log.e(TAG, "onClick: R.id.btn1");
-                    e.printStackTrace();
-                }*/
-
-                Log.d(TAG, "onClick: btn1");
-                break;
-            case R.id.btn_startservice:
-                Log.i(TAG, "onClick: join");
-                //与服务器连接，加入联邦学习
-                startService(webSocketIntent);
-                break;
-            case R.id.btn_stopservice:
-                Log.i(TAG, "onClick: close");
-                //断开webSocket连接，退出联邦学习
-                stopService(webSocketIntent);
-                Log.d(TAG, "onClick: ");
-                break;
-            default:
-                break;
-        }
-    }
-
 }

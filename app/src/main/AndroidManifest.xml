@@ -22,6 +22,54 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.fed.RegisterActivity"
+            android:label="Register Activity">
+            <intent-filter>
+                <action android:name="com.litreily.RegisterActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fed.HomeActivity"
+            android:label="Home Activity">
+            <intent-filter>
+                <action android:name="com.litreily.HomeActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fed.HistoryActivity"
+            android:label="History Activity">
+            <intent-filter>
+                <action android:name="com.litreily.HistoryActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fed.NowActivity"
+            android:label="Now Activity">
+            <intent-filter>
+                <action android:name="com.litreily.NowActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fed.ShezhiActivity"
+            android:label="Shezhi Activity">
+            <intent-filter>
+                <action android:name="com.litreily.ShezhiActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fed.MineActivity"
+            android:label="Mine Activity">
+            <intent-filter>
+                <action android:name="com.litreily.MineActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
         <!--websocket服务-->
         <service
