@@ -12,83 +12,121 @@
         android:text="我的"
         android:textAlignment="center"
         android:textSize="30dp"/>
+
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/photo"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="更换头像"
+        android:textAlignment="center"
+        android:textSize="15dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/btn_takephoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="拍照" />
+        <Button
+            android:id="@+id/btn_photos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="从相册中选取" />
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/main_Frame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
     </FrameLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:drawableTop="@drawable/renwuguanli"
         android:layout_height="10dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <RadioGroup
-        android:id="@+id/main_menu"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/RB_renwuguanli"
-            android:layout_width="0dp"
+        android:layout_weight="1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="bottom">
+        <RadioGroup
+            android:id="@+id/main_menu"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/renwuguanli"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="10dp"
-            android:text="任务管理"/>
-        <RadioButton
-            android:id="@+id/RB_lishi"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/lishi"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="10dp"
-            android:text="历史记录"/>
-        <RadioButton
-            android:id="@+id/RB_now"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/now"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="10dp"
-            android:text="当前状态"/>
-        <RadioButton
-            android:id="@+id/RB_shezhi"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/shezhi"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="10dp"
-            android:text="设置"/>
-        <RadioButton
-            android:id="@+id/RB_mine"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/mine"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="10dp"
-            android:text="我的"/>
-    </RadioGroup>
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+            <RadioButton
+                android:id="@+id/RB_renwuguanli"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/renwuguanli"
+                android:gravity="center"
+                android:text="任务管理"
+                android:textAlignment="center"
+                android:textSize="10dp" />
+            <RadioButton
+                android:id="@+id/RB_lishi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/lishi"
+                android:gravity="center"
+                android:text="历史记录"
+                android:textAlignment="center"
+                android:textSize="10dp" />
 
+            <RadioButton
+                android:id="@+id/RB_now"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/now"
+                android:gravity="center"
+                android:text="当前状态"
+                android:textAlignment="center"
+                android:textSize="10dp" />
+
+            <RadioButton
+                android:id="@+id/RB_shezhi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/shezhi"
+                android:gravity="center"
+                android:text="设置"
+                android:textAlignment="center"
+                android:textSize="10dp" />
+
+            <RadioButton
+                android:id="@+id/RB_mine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/mine"
+                android:gravity="center"
+                android:text="我的"
+                android:textAlignment="center"
+                android:textSize="10dp" />
+        </RadioGroup>
+    </LinearLayout>
 </LinearLayout>
