@@ -4,7 +4,7 @@
     android:theme = "@style/NoTitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back3">
+    android:background="@drawable/bg0">
     <TextView
         android:id="@+id/news_item_content_text_view"
         android:layout_width="match_parent"
@@ -17,6 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="可选项目列表">
+        </TextView>
     </FrameLayout>
     <ImageView
         android:layout_width="match_parent"

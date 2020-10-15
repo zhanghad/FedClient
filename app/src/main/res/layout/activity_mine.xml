@@ -4,7 +4,7 @@
     android:theme = "@style/NoTitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back2">
+    android:background="@drawable/bg0">
     <TextView
         android:id="@+id/news_item_content_text_view"
         android:layout_width="match_parent"
@@ -22,26 +22,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="更换头像"
+        android:text="点击头像更换"
         android:textAlignment="center"
         android:textSize="15dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
-        <Button
-            android:id="@+id/btn_takephoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:text="拍照" />
-        <Button
-            android:id="@+id/btn_photos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="从相册中选取" />
-    </LinearLayout>
+
 
     <FrameLayout
         android:id="@+id/main_Frame"

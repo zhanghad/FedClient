@@ -2,10 +2,10 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@drawable/back1"
+    android:background="@drawable/bg2"
     android:theme = "@style/NoTitle"
     tools:context="com.fed.MainActivity">
 
@@ -15,32 +15,27 @@
         android:layout_height="wrap_content"
         android:layout_gravity=""
         android:text="欢迎使用"
-        android:layout_marginTop="200px"
+        android:layout_marginTop="300px"
         android:layout_marginLeft="20dp"
         android:textSize="40sp"
-        android:textColor="#5767de"
-        ></TextView>
-
-
+        android:textColor="@color/color_blue_title"/>
 
     <EditText
-        android:id="@+id/userName"
-        android:layout_width="fill_parent"
+        android:id="@+id/user_name"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:hint="请输入你的用户名"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:hint="请输入你的用户名"/>
-
-    <EditText
-
-        android:id="@+id/passwd"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="20dp"
         android:hint="请输入你的密码"/>
-
-
 
     <Button
         android:id="@+id/btnLogin"
@@ -49,9 +44,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:layout_marginTop="15dp"
-        android:text="登 录"
-        android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginTop="20dp"
+        android:text="登  录"
+        android:textColor="@color/color_blue_light"
         android:textSize="18sp"/>
 
     <Button
@@ -62,8 +57,8 @@
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_marginTop="15dp"
-        android:text="注 册"
-        android:textColor="@android:color/holo_blue_dark"
+        android:text="注  册"
+        android:textColor="@color/color_blue_light"
         android:textSize="18sp"/>
 
 </LinearLayout>

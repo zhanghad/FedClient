@@ -3,33 +3,44 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
-    android:background="@drawable/back1"
+    android:background="@drawable/bg2"
     android:layout_height="match_parent"
     android:theme = "@style/NoTitle"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/lable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity=""
+        android:text="请注册"
+        android:layout_marginTop="200px"
+        android:layout_marginLeft="30dp"
+        android:textSize="40sp"
+        android:textColor="@color/color_blue_title"/>
+
     <EditText
         android:id="@+id/userName"
-        android:layout_width="fill_parent"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         android:layout_marginLeft="40dp"
-        android:hint="请输入你的用户名"/>
+        android:layout_marginTop="48dp"
+        android:hint="请输入你的用户名" />
 
     <EditText
 
         android:id="@+id/passwd"
-        android:layout_width="fill_parent"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"
         android:hint="请输入你的密码"/>
 
     <EditText
         android:id="@+id/passwd2"
-        android:layout_width="fill_parent"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"
         android:hint="确认密码"/>
 
@@ -40,9 +51,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:text="注 册"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/color_blue_light"
         android:textSize="18sp"/>
     <Button
         android:id="@+id/to_login"
@@ -53,6 +64,6 @@
         android:layout_marginRight="35dp"
         android:layout_marginTop="15dp"
         android:text="返回登录"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/color_blue_light"
         android:textSize="18sp"/>
 </LinearLayout>
