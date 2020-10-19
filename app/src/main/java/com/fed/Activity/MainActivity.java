@@ -1,4 +1,4 @@
-package com.fed;
+package com.fed.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -12,15 +12,82 @@
         android:text="设置"
         android:textAlignment="center"
         android:textSize="30dp" />
-    <FrameLayout
+
+    <LinearLayout
         android:id="@+id/main_Frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:padding="20dp"
+            android:text="可允许访问文件："
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/name_text"
+            android:layout_width="120dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="6dp"
+            android:height="40dp"
+            android:background="@color/color_white" />
+
+        <ImageView
+            android:id="@+id/dropdown"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:onClick="babyname_onClick"
+            android:paddingRight="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/arrow_down" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1">
-    </FrameLayout>
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:padding="20dp"
+            android:text="允许非网络下使用："
+            android:textSize="16sp"
+            />
+
+        <Switch
+            android:id="@+id/kaiguan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

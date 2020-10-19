@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:theme = "@style/NoTitle"
+    android:theme="@style/NoTitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg0">
+
     <TextView
         android:id="@+id/news_item_content_text_view"
         android:layout_width="match_parent"
@@ -13,18 +15,46 @@
         android:textAlignment="center"
         android:textSize="30dp"/>
 
-    <ImageView
-        android:id="@+id/iv_head"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/photo"/>
-    <TextView
+
+
+    <LinearLayout
+        android:id="@+id/ll_portrait"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="点击头像更换"
-        android:textAlignment="center"
-        android:textSize="15dp"/>
+        android:paddingTop="30dp"
+        android:paddingBottom="10dp">
+
+        <com.fed.widge.RoundImageView
+            android:id="@+id/iv_head"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/padding_left_and_right"
+            android:scaleType="centerCrop"
+            android:src="@drawable/photo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改头像"
+            android:textColor="@color/color_black"
+            android:layout_gravity="center"
+            android:paddingLeft="@dimen/padding_left_and_right"/>
+
+        <Button
+            android:id="@+id/btn_takephoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拍照" />
+
+        <Button
+            android:id="@+id/btn_photos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="从相册中选取" />
+
+
+    </LinearLayout>
+
 
 
     <FrameLayout
@@ -41,7 +71,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1" >
+        <ListView
+            android:id="@+id/person_list"
+            android:layout_width="match_parent"
+            android:layout_height="570dp"></ListView>
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"

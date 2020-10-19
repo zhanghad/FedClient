@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/bg2"
     android:theme = "@style/NoTitle"
-    tools:context="com.fed.MainActivity">
+    tools:context="com.fed.Activity.MainActivity">
 
     <TextView
         android:id="@+id/lable"

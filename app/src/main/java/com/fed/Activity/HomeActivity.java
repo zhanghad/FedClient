@@ -1,24 +1,34 @@
-package com.fed;
+package com.fed.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RadioButton;
-
+import android.widget.SimpleAdapter;
 import androidx.appcompat.app.AppCompatActivity;
-import com.fed.websocket.WebSocketService;
 import com.fedclient.R;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
-    private String[] data = { "project 1", "project 2", "project 3", "project 4", "project 5", "project 6", "project 7", "project 8"};
     private RadioButton RB_renwuguanli;
     private RadioButton RB_lishi;
     private RadioButton RB_now;
     private RadioButton RB_shezhi;
     private RadioButton RB_mine;
+
+    private List<Map<String, Object>> lists;
+    private SimpleAdapter adapter;
+    private ListView choose_list;
+
+    private String[] theme = {"project000", "project001", "project002", "project003"};
+    private String[] content = {"图像分类", "图像识别", "情感分析", "文本识别"};
+    private int[] imageViews = {R.drawable.c0, R.drawable.c1,R.drawable.c2,R.drawable.c3};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +36,18 @@ public class HomeActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
 
-        ListView listView = (ListView) findViewById(R.id.list);//在视图中找到ListView
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,data);//新建并配置ArrayAapeter
-        listView.setAdapter(adapter);
+        lists = new ArrayList<>();
+        for(int i=0;i< theme.length ;i++){
+            Map<String, Object> map = new HashMap<>();
+            map.put("image" , imageViews[i]);
+            map.put("theme", theme[i]);
+            map.put("content", content[i]);
+            lists.add(map);
+        }
+
+        adapter = new SimpleAdapter(HomeActivity.this, lists, R.layout.list_choose, new String[]{"image", "theme", "content"}, new int[]{R.id.image1, R.id.text1, R.id.text2});
+        choose_list = (ListView) findViewById(R.id.choose_list);
+        choose_list.setAdapter(adapter);
 
         RB_renwuguanli = (RadioButton) findViewById (R.id.RB_renwuguanli);
         RB_renwuguanli.setOnClickListener(new View.OnClickListener() {
@@ -70,5 +89,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        
     }
 }

@@ -14,63 +14,66 @@
         android:textAlignment="center"
         android:textSize="30dp" />
 
-    <FrameLayout
-        android:id="@+id/main_Frame"
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"></FrameLayout>
+        android:orientation="vertical">
 
-    <TextView
-        android:textSize="10sp"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:text="设置当前进度固定不可拖动"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:id="@+id/full"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/progesss_value1"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_reset_all"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/percentage"
-            android:gravity="center"
-            android:paddingBottom="8dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:paddingTop="2dp"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:text="20%" />
+            android:text="？" />
 
-        <ProgressBar
+
+        <com.fed.CircleProgress
+            android:id="@+id/circle_progress_bar2"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/progesss1"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/photo"
-            android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal"
-            android:indeterminateOnly="false"
-            android:max="100"
-            android:maxHeight="60dp"
-            android:minHeight="16dp"
-            android:progress="20"
-            android:progressDrawable="@drawable/lishi" />
+            app:antiAlias="true"
+            app:arcWidth="@dimen/small"
+            app:bgArcColor="@color/colorAccent"
+            app:bgArcWidth="@dimen/small"
+            app:hint="百分比"
+            app:hintSize="@dimen/text_size_15"
+            app:maxValue="100"
+            app:startAngle="135"
+            app:sweepAngle="270"
+            app:textOffsetPercentInRadius="0.5"
+            app:unit="%"
+            app:unitSize="@dimen/text_size_15"
+            app:value="75"
+            app:valueSize="@dimen/text_size_20" />
+
+        <com.fed.CircleProgress
+            android:id="@+id/circle_progress_bar3"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            app:antiAlias="true"
+            app:arcWidth="@dimen/small"
+            app:bgArcColor="@android:color/darker_gray"
+            app:bgArcWidth="@dimen/small"
+            app:hint="当前进度"
+            app:hintSize="@dimen/text_size_25"
+            app:maxValue="100"
+            app:startAngle="270"
+            app:sweepAngle="360"
+            app:unit="%"
+            app:unitSize="@dimen/text_size_25"
+            app:value="100"
+            app:valueSize="@dimen/text_size_35" />
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="02dp"
-        android:layout_weight="1" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></LinearLayout>
+
 
     <RadioGroup
         android:id="@+id/main_menu"

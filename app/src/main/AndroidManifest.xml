@@ -15,7 +15,8 @@
         <!--okhttp3 的配置，使其可使用http-->
 
 
-        <activity android:name="com.fed.MainActivity">
+        <activity
+            android:name="com.fed.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -23,7 +24,7 @@
         </activity>
 
         <activity
-            android:name="com.fed.RegisterActivity"
+            android:name="com.fed.Activity.RegisterActivity"
             android:label="Register Activity">
             <intent-filter>
                 <action android:name="com.litreily.RegisterActivity"/>
@@ -31,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.fed.HomeActivity"
+            android:name="com.fed.Activity.HomeActivity"
             android:label="Home Activity">
             <intent-filter>
                 <action android:name="com.litreily.HomeActivity"/>
@@ -39,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.fed.HistoryActivity"
+            android:name="com.fed.Activity.HistoryActivity"
             android:label="History Activity">
             <intent-filter>
                 <action android:name="com.litreily.HistoryActivity"/>
@@ -47,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.fed.NowActivity"
+            android:name="com.fed.Activity.NowActivity"
             android:label="Now Activity">
             <intent-filter>
                 <action android:name="com.litreily.NowActivity"/>
@@ -55,21 +56,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.fed.ShezhiActivity"
-            android:label="Shezhi Activity">
-            <intent-filter>
-                <action android:name="com.litreily.ShezhiActivity"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.fed.MineActivity"
+            android:name="com.fed.Activity.MineActivity"
             android:label="Mine Activity">
             <intent-filter>
                 <action android:name="com.litreily.MineActivity"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.fed.Activity.ShezhiActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
 
         <!--websocket服务-->
         <service
@@ -85,8 +87,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />\
 
     <permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 

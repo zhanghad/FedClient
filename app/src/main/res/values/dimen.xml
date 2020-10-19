@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">32px</dimen>
+    <dimen name="activity_vertical_margin">32px</dimen>
+
+    <!--主界面底部图标大小-->
+    <dimen name="main_bottom_iv_horizontal_size">58px</dimen>
+    <dimen name="main_bottom_iv_vertical_size">54px</dimen>
+
+    <!--列表item间距-->
+    <dimen name="item_margin_left_and_right">25px</dimen>
+    <dimen name="item_margin_top_and_bottom">15px</dimen>
+
+    <!--选项间距-->
+    <dimen name="option_item_margin_top">42px</dimen>
+    <dimen name="option_item_margin_left">40px</dimen>
+    <dimen name="option_item_margin_right">40px</dimen>
+
+    <!--界面的padding-->
+    <dimen name="padding_top_and_bottom">30dp</dimen>
+    <dimen name="padding_left_and_right">15dp</dimen>
+
+    <!--消息框的上下margin-->
+    <dimen name="message_padding">3dp</dimen>
+
+
+    <dimen name="small">5dp</dimen>
+    <dimen name="medium">10dp</dimen>
+    <dimen name="normal">15dp</dimen>
+    <dimen name="large">20dp</dimen>
+    <dimen name="xlarge">25dp</dimen>
+    <dimen name="xxlarge">30dp</dimen>
+
+    <!-- text size -->
+    <dimen name="text_size_35">35sp</dimen>
+    <dimen name="text_size_34">34sp</dimen>
+    <dimen name="text_size_33">33sp</dimen>
+    <dimen name="text_size_32">32sp</dimen>
+    <dimen name="text_size_31">31sp</dimen>
+    <dimen name="text_size_30">30sp</dimen>
+    <dimen name="text_size_29">29sp</dimen>
+    <dimen name="text_size_28">28sp</dimen>
+    <dimen name="text_size_26">26sp</dimen>
+    <dimen name="text_size_25">25sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_23">23sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_21">21sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_19">19sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_17">17sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_13">13sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_11">11sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_9">9sp</dimen>
+    <dimen name="text_size_8">8sp</dimen>
+    <dimen name="text_size_7">7sp</dimen>
+</resources>
