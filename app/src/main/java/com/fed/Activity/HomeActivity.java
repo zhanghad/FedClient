@@ -2,6 +2,7 @@ package com.fed.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -9,6 +10,8 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.SimpleAdapter;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.fed.Details;
 import com.fedclient.R;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +51,21 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new SimpleAdapter(HomeActivity.this, lists, R.layout.list_choose, new String[]{"image", "theme", "content"}, new int[]{R.id.image1, R.id.text1, R.id.text2});
         choose_list = (ListView) findViewById(R.id.choose_list);
         choose_list.setAdapter(adapter);
+
+        choose_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("image", imageViews[arg2]);
+                bundle.putString("theme", theme[arg2]);
+                bundle.putString("content", content[arg2]);
+                Intent intent = new Intent();
+                intent.putExtras(bundle);
+                intent.setClass(HomeActivity.this, Details.class);
+                Log.i("theme", theme[arg2]);
+                startActivity(intent);
+            }
+        });
 
         RB_renwuguanli = (RadioButton) findViewById (R.id.RB_renwuguanli);
         RB_renwuguanli.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +107,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        
+
+
     }
 }
