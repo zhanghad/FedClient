@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:theme="@style/NoTitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg0">
@@ -15,8 +14,6 @@
         android:textAlignment="center"
         android:textSize="30dp"/>
 
-
-
     <LinearLayout
         android:id="@+id/ll_portrait"
         android:layout_width="match_parent"
@@ -24,13 +21,12 @@
         android:paddingTop="30dp"
         android:paddingBottom="10dp">
 
-        <com.fed.widge.RoundImageView
+        <ImageView
             android:id="@+id/iv_head"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="@dimen/padding_left_and_right"
-            android:scaleType="centerCrop"
-            android:src="@drawable/photo"/>
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,7 +43,7 @@
             android:text="拍照" />
 
         <Button
-            android:id="@+id/btn_photos"
+            android:id="@+id/btn_fromalbum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="从相册中选取" />
@@ -90,7 +86,7 @@
             android:orientation="horizontal"
             android:paddingTop="10dp">
             <RadioButton
-                android:id="@+id/RB_renwuguanli"
+                android:id="@+id/RB_home"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -101,7 +97,7 @@
                 android:textAlignment="center"
                 android:textSize="10dp" />
             <RadioButton
-                android:id="@+id/RB_lishi"
+                android:id="@+id/RB_history"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

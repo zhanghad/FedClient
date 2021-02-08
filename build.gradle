@@ -31,3 +31,9 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['litepal-1.6.1-src.jar'])
+}
+
+

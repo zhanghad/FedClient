@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@drawable/bg2"
-    android:theme = "@style/NoTitle"
     tools:context="com.fed.Activity.MainActivity">
 
     <TextView
@@ -21,7 +20,7 @@
         android:textColor="@color/color_blue_title"/>
 
     <EditText
-        android:id="@+id/user_name"
+        android:id="@+id/et_Username"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -30,24 +29,40 @@
         android:inputType="textPersonName"/>
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/et_password"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:hint="请输入你的密码"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="horizontal"
+        android:layout_marginRight="60dp">
+        <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/isRememberPwd"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记住密码" />
+    </LinearLayout>
+
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btn_Login"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="35dp"
-        android:layout_marginTop="20dp"
         android:text="登  录"
         android:textColor="@color/color_blue_light"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btn_register"
@@ -55,10 +70,11 @@
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
         android:layout_marginTop="15dp"
+        android:layout_marginRight="35dp"
         android:text="注  册"
         android:textColor="@color/color_blue_light"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
+
 
 </LinearLayout>

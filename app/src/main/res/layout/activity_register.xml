@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:background="@drawable/bg2"
     android:layout_height="match_parent"
-    android:theme = "@style/NoTitle"
     android:orientation="vertical">
 
     <TextView
@@ -20,7 +19,7 @@
         android:textColor="@color/color_blue_title"/>
 
     <EditText
-        android:id="@+id/userName"
+        android:id="@+id/et_username"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -29,7 +28,7 @@
 
     <EditText
 
-        android:id="@+id/passwd"
+        android:id="@+id/et_psw1"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -37,7 +36,7 @@
         android:hint="请输入你的密码"/>
 
     <EditText
-        android:id="@+id/passwd2"
+        android:id="@+id/et_psw2"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

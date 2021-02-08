@@ -21,8 +21,7 @@ import java.util.Map;
 
 
 public class HistoryActivity extends AppCompatActivity {
-    private RadioButton RB_renwuguanli;
-    private RadioButton RB_lishi;
+    private RadioButton RB_home;
     private RadioButton RB_now;
     private RadioButton RB_shezhi;
     private RadioButton RB_mine;
@@ -70,20 +69,13 @@ public class HistoryActivity extends AppCompatActivity {
         });
         
 
-        RB_renwuguanli = (RadioButton) findViewById (R.id.RB_renwuguanli);
-        RB_renwuguanli.setOnClickListener(new View.OnClickListener() {
+        RB_home = (RadioButton) findViewById (R.id.RB_home);
+        RB_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(HistoryActivity.this,HomeActivity.class);
                 startActivity(intent);
-            }
-        });
-        RB_lishi = (RadioButton) findViewById (R.id.RB_lishi);
-        RB_lishi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(HistoryActivity.this,HistoryActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         RB_now = (RadioButton) findViewById (R.id.RB_now);
@@ -92,6 +84,7 @@ public class HistoryActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(HistoryActivity.this,NowActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         RB_shezhi = (RadioButton) findViewById (R.id.RB_shezhi);
@@ -100,6 +93,7 @@ public class HistoryActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(HistoryActivity.this,ShezhiActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         RB_mine = (RadioButton) findViewById (R.id.RB_mine);
@@ -108,6 +102,7 @@ public class HistoryActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(HistoryActivity.this,MineActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

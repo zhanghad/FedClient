@@ -1,5 +1,6 @@
 package com.fed.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,43 +12,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.fed.widge.RoundImageView;
 import com.fedclient.R;
 import org.deeplearning4j.nn.workspace.LayerWorkspaceMgr;
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import com.fedclient.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-public class MineActivity<PhotoUtils, TitleLayout> extends AppCompatActivity implements View.OnClickListener {
-
-
-    private RadioButton RB_renwuguanli;
-    private RadioButton RB_lishi;
+public class MineActivity extends Activity {
+    private RadioButton RB_home;
+    private RadioButton RB_history;
     private RadioButton RB_now;
     private RadioButton RB_shezhi;
-    private RadioButton RB_mine;
     private LayerWorkspaceMgr.Builder Glide;
 
-    private ImageView ivHead;//头像显示
-    private Button btnTakephoto;//拍照
-    private Button btnPhotos;//相册
-    private Bitmap head;//头像Bitmap
-    private static String path = "/sdcard/DemoHead/";//sd路径
+    public static final int TAKE_PHOTO = 1;
+    public static final int CROP_PHOTO = 2;
+
+    private ImageView iv_head;//头像显示
+    private Button btn_takephoto;//拍照
+    private Button btn_fromalbum;//相册
+    private Uri imageUri;
 
     private List<Map<String, Object>> lists;
     private SimpleAdapter adapter;
@@ -56,199 +46,132 @@ public class MineActivity<PhotoUtils, TitleLayout> extends AppCompatActivity imp
     private String[] theme = {"姓名", "ID", "积分", "手机号"};
     private String[] content = {"name", "001", "20", "139***0434"};
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mine);
-        initView();
-
 
         lists = new ArrayList<>();
-        for(int i=0;i< theme.length ;i++){
+        for (int i = 0; i < theme.length; i++) {
             Map<String, Object> map = new HashMap<>();
             map.put("theme", theme[i]);
             map.put("content", content[i]);
             lists.add(map);
         }
 
-        adapter = new SimpleAdapter(MineActivity.this, lists, R.layout.item_group_layout, new String[]{ "theme", "content"}, new int[]{ R.id.title_tv, R.id.content_edt});
+        adapter = new SimpleAdapter(MineActivity.this, lists, R.layout.item_group_layout, new String[]{"theme", "content"}, new int[]{R.id.title_tv, R.id.content_edt});
         listView = (ListView) findViewById(R.id.person_list);
         listView.setAdapter(adapter);
 
-
-        RB_renwuguanli = (RadioButton) findViewById (R.id.RB_renwuguanli);
-        RB_renwuguanli.setOnClickListener(new View.OnClickListener() {
+        RB_home = (RadioButton) findViewById(R.id.RB_home);
+        RB_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MineActivity.this,HomeActivity.class);
+                Intent intent = new Intent(MineActivity.this, HomeActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
-        RB_lishi = (RadioButton) findViewById (R.id.RB_lishi);
-        RB_lishi.setOnClickListener(new View.OnClickListener() {
+        RB_history = (RadioButton) findViewById(R.id.RB_history);
+        RB_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MineActivity.this,HistoryActivity.class);
+                Intent intent = new Intent(MineActivity.this, HistoryActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
-        RB_now = (RadioButton) findViewById (R.id.RB_now);
+        RB_now = (RadioButton) findViewById(R.id.RB_now);
         RB_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MineActivity.this,NowActivity.class);
+                Intent intent = new Intent(MineActivity.this, NowActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
-        RB_shezhi = (RadioButton) findViewById (R.id.RB_shezhi);
+        RB_shezhi = (RadioButton) findViewById(R.id.RB_shezhi);
         RB_shezhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MineActivity.this,ShezhiActivity.class);
+                Intent intent = new Intent(MineActivity.this, ShezhiActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
-        RB_mine = (RadioButton) findViewById (R.id.RB_mine);
-        RB_mine.setOnClickListener(new View.OnClickListener() {
+
+        btn_takephoto = (Button) findViewById(R.id.btn_takephoto);
+        btn_fromalbum = (Button) findViewById(R.id.btn_fromalbum);
+        iv_head = (ImageView) findViewById(R.id.iv_head);
+
+        btn_takephoto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MineActivity.this,MineActivity.class);
-                startActivity(intent);
+            public void onClick(View v) {
+                File outputImage = new File(Environment.getExternalStorageDirectory(), "tempImage.jpg");
+                try {
+                    if (outputImage.exists()) {
+                        outputImage.delete();
+                    }
+                    outputImage.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                imageUri = Uri.fromFile(outputImage);
+                Intent intent = new Intent("android.media.action. IMAGE_CAPTURE");
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(intent, TAKE_PHOTO);
             }
         });
-    }
 
-    private void initView() {
-        //初始化控件
-        btnPhotos = (Button) findViewById(R.id.btn_photos);
-        btnTakephoto = (Button) findViewById(R.id.btn_takephoto);
-        btnPhotos.setOnClickListener(this);
-        btnTakephoto.setOnClickListener(this);
-        ivHead = (ImageView) findViewById(R.id.iv_head);
-
-        Bitmap bt = BitmapFactory.decodeFile(path + "head.jpg");//从Sd中找头像，转换成Bitmap
-        if (bt != null) {
-            //如果本地有头像图片的话
-            ivHead.setImageBitmap(bt);
-        } else {
-            //如果本地没有头像图片则从服务器取头像，然后保存在SD卡中，本Demo的网络请求头像部分忽略
-
-        }
+        btn_fromalbum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File outputImage = new File(Environment.getExternalStorageDirectory(), "output_image.jpg");
+                try {
+                    if (outputImage.exists()) {
+                        outputImage.delete();
+                    }
+                    outputImage.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                imageUri = Uri.fromFile(outputImage);
+                Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                intent.setType("image/*");
+                intent.putExtra("crop",true);
+                intent.putExtra("scale",true);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(intent,CROP_PHOTO);
+            }
+        });
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_photos://从相册里面取照片
-                Intent intent1 = new Intent(Intent.ACTION_PICK, null);//返回被选中项的URI
-                intent1.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");//得到所有图片的URI
-//                System.out.println("MediaStore.Images.Media.EXTERNAL_CONTENT_URI  ------------>   "
-//                        + MediaStore.Images.Media.EXTERNAL_CONTENT_URI);//   content://media/external/images/media
-                startActivityForResult(intent1, 1);
-                break;
-            case R.id.btn_takephoto://调用相机拍照
-                //最好用try/catch包裹一下，防止因为用户未给应用程序开启相机权限，而使程序崩溃
-                try {
-                    Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//开启相机应用程序获取并返回图片（capture：俘获）
-                    intent2.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(Environment.getExternalStorageDirectory(),
-                            "head.jpg")));//指明存储图片或视频的地址URI
-                    startActivityForResult(intent2, 2);//采用ForResult打开
-                } catch (Exception e) {
-                    Toast.makeText(MineActivity.this, "相机无法启动，请先开启相机权限", Toast.LENGTH_LONG).show();
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            //从相册里面取相片的返回结果
-            case 1:
+            case TAKE_PHOTO:
                 if (resultCode == RESULT_OK) {
-                    cropPhoto(data.getData());//裁剪图片
+                    Intent intent = new Intent("com.android.camera.action.CROP");
+                    intent.setDataAndType(imageUri, "image/*");
+                    intent.putExtra("scale", true);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                    startActivityForResult(intent, CROP_PHOTO); // 启动裁剪程序
                 }
-
                 break;
-            //相机拍照后的返回结果
-            case 2:
+            case CROP_PHOTO:
                 if (resultCode == RESULT_OK) {
-                    File temp = new File(Environment.getExternalStorageDirectory()
-                            + "/head.jpg");
-                    cropPhoto(Uri.fromFile(temp));//裁剪图片
-                }
-
-                break;
-            //调用系统裁剪图片后
-            case 3:
-                if (data != null) {
-                    Bundle extras = data.getExtras();
-                    head = extras.getParcelable("data");
-                    if (head != null) {
-                        /**
-                         * 上传服务器代码
-                         */
-                        setPicToView(head);//保存在SD卡中
-                        ivHead.setImageBitmap(head);//用ImageView显示出来
+                    try {
+                        Bitmap bitmap = BitmapFactory.decodeStream
+                                (getContentResolver()
+                                        .openInputStream(imageUri));
+                        iv_head.setImageBitmap(bitmap); // 将裁剪后的照片显示出来
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
                 }
                 break;
             default:
                 break;
-
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    ;
-
-    /**
-     * 调用系统的裁剪
-     *
-     * @param uri
-     */
-    public void cropPhoto(Uri uri) {
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        //找到指定URI对应的资源图片
-        intent.setDataAndType(uri, "image/*");
-        intent.putExtra("crop", "true");
-        // aspectX aspectY 是宽高的比例
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 150);
-        intent.putExtra("outputY", 150);
-        intent.putExtra("return-data", true);
-        //进入系统裁剪图片的界面
-        startActivityForResult(intent, 3);
-    }
-
-    private void setPicToView(Bitmap mBitmap) {
-        String sdStatus = Environment.getExternalStorageState();
-        if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd卡是否可用
-            return;
-        }
-        FileOutputStream b = null;
-        File file = new File(path);
-        file.mkdirs();// 创建以此File对象为名（path）的文件夹
-        String fileName = path + "head.jpg";//图片名字
-        try {
-            b = new FileOutputStream(fileName);
-            mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件（compress：压缩）
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                //关闭流
-                b.flush();
-                b.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
         }
     }
 }

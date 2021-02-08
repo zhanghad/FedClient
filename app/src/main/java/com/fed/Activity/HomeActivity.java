@@ -19,8 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
-    private RadioButton RB_renwuguanli;
-    private RadioButton RB_lishi;
+    private RadioButton RB_history;
     private RadioButton RB_now;
     private RadioButton RB_shezhi;
     private RadioButton RB_mine;
@@ -36,7 +35,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
 
         lists = new ArrayList<>();
@@ -67,20 +65,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        RB_renwuguanli = (RadioButton) findViewById (R.id.RB_renwuguanli);
-        RB_renwuguanli.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(HomeActivity.this,HomeActivity.class);
-                startActivity(intent);
-            }
-        });
-        RB_lishi = (RadioButton) findViewById (R.id.RB_lishi);
-        RB_lishi.setOnClickListener(new View.OnClickListener() {
+        RB_history = (RadioButton) findViewById (R.id.RB_history);
+        RB_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(HomeActivity.this,HistoryActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         RB_now = (RadioButton) findViewById (R.id.RB_now);
@@ -89,6 +80,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(HomeActivity.this,NowActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         RB_shezhi = (RadioButton) findViewById (R.id.RB_shezhi);
@@ -97,6 +89,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(HomeActivity.this,ShezhiActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         RB_mine = (RadioButton) findViewById (R.id.RB_mine);
@@ -105,6 +98,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(HomeActivity.this,MineActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

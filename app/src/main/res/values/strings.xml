@@ -3,4 +3,11 @@
     <string name="action_linear">Linear</string>
     <string name="action_moon">Moon</string>
     <string name="action_saturn">Saturn</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="null_hint">账号或密码不能为空</string>
+    <string name="not_equal_hint">两次输入的密码需保持一致</string>
+    <string name="account_invalid_hint">用户名不是有效的手机号或邮箱</string>
+    <string name="no_record">无记录</string>
+
 </resources>
