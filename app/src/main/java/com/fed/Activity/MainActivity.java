@@ -3,7 +3,6 @@ package com.fed.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -23,6 +22,7 @@ import com.fed.util.CommonRequest;
 import com.fed.util.CommonResponse;
 import com.fed.util.HttpUtil;
 import com.fed.util.Consts;
+import com.fed.util.UserManager;
 
 import org.litepal.LitePal;
 import org.litepal.crud.DataSupport;

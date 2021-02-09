@@ -15,8 +15,6 @@
         android:name="org.litepal.LitePalApplication"
         android:usesCleartextTraffic="true">
 
-
-
         <activity
             android:name="com.fed.Activity.MainActivity">
             <intent-filter>
