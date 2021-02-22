@@ -10,4 +10,12 @@
     <string name="account_invalid_hint">用户名不是有效的手机号或邮箱</string>
     <string name="no_record">无记录</string>
 
+    <string name="Username">用户名</string>
+    <string name="Userscore">积分</string>
+    <string name="Nickname">昵称</string>
+    <string name="modify_hint">修改</string>
+    <string name="Password">密码</string>
+    <string name="Back">返回</string>
+
+
 </resources>

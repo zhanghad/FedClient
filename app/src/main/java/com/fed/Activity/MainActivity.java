@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
                         user = new User();
                         user.setUsername(username);
                         user.setPassword(password);
-
                     }
                     //UserManager.setCurrentUser(user);// 设置当前用户
                 }

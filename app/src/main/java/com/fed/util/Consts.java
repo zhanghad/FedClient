@@ -4,6 +4,8 @@ public class Consts {
     private static String URL = "http://^^^^";
     public static String URL_Register = URL + "RegisterServlet";
     public static String URL_Login = URL + "LoginServlet";
+    public static String URL_GetInfo = URL + "GetInfoServlet";
+    public static String URL_SetInfo = URL + "SetInfoServlet";
 
     // 服务器代码
     public static String ERRORCODE_NULL = "200";
@@ -14,6 +16,7 @@ public class Consts {
     public static String SUCCESSCODE_LOGIN = "100";
     public static String SUCCESSCODE_REGISTER = "101";
 
+    public static String REQUESTCODE_NICKNAME = "1";
 
     // 代码对应信息
     public static String ERRORMSG_NULL = "不能为空";

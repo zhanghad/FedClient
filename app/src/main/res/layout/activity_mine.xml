@@ -6,13 +6,38 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg0">
 
-    <TextView
-        android:id="@+id/news_item_content_text_view"
+    <LinearLayout
+        android:id="@+id/layout_titlebar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我的"
-        android:textAlignment="center"
-        android:textSize="30dp"/>
+        android:layout_height="48dp"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:onClick="onBackward"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:src="@mipmap/arrow_back_white"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/Back"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_portrait"
@@ -25,9 +50,7 @@
             android:id="@+id/iv_head"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="@dimen/padding_left_and_right"
-            />
-
+            android:layout_marginLeft="@dimen/padding_left_and_right"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,35 +58,25 @@
             android:textColor="@color/color_black"
             android:layout_gravity="center"
             android:paddingLeft="@dimen/padding_left_and_right"/>
-
         <Button
             android:id="@+id/btn_takephoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="拍照" />
-
         <Button
             android:id="@+id/btn_fromalbum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="从相册中选取" />
-
-
     </LinearLayout>
 
-
-
-    <FrameLayout
-        android:id="@+id/main_Frame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </FrameLayout>
-
+    <!--分割线-->
     <ImageView
         android:layout_width="match_parent"
-        android:drawableTop="@drawable/renwuguanli"
-        android:layout_height="10dp"/>
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
 
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +86,154 @@
             android:layout_width="match_parent"
             android:layout_height="570dp"></ListView>
     </LinearLayout>
+    -->
 
+    <!--用户名-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/center_account"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/Username"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tx_account"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:background="@color/transparent"
+            android:text="13912341234"
+            android:textColor="@color/gray_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <!--积分-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/Userscore_Text"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/Userscore"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tx_Userscore"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:background="@color/transparent"
+            android:text="0"
+            android:textColor="@color/gray_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <!--昵称-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/Nickname"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_nickname"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:background="@color/transparent"
+            android:text="@string/modify_hint"
+            android:textColor="@color/gray_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!--分割线-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <!--密码-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/passwordText"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/Password"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_password"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:gravity="center_vertical|end"
+            android:text="@string/modify_hint"
+            android:textColor="@color/gray_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!--分割线-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -145,4 +305,6 @@
                 android:textSize="10dp" />
         </RadioGroup>
     </LinearLayout>
+    -->
+
 </LinearLayout>
