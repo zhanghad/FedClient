@@ -10,7 +10,6 @@ import java.io.IOException;
 public class SaveAndLoad {
     //负责保存和加载模型的工具类
 
-
     public static void saveMultiLayerNetwork(MultiLayerNetwork model,String path) throws IOException {
         //path instance : "model/MyMultiLayerNetwork.zip"
         File locationToSave = new File(path);
@@ -35,7 +34,5 @@ public class SaveAndLoad {
         //Load the model
         return ModelSerializer.restoreComputationGraph(path);
     }
-
-
 
 }

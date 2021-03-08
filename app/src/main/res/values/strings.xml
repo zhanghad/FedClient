@@ -16,6 +16,19 @@
     <string name="modify_hint">修改</string>
     <string name="Password">密码</string>
     <string name="Back">返回</string>
+    <string name="Setting">设置</string>
+    <string name="Center">个人中心</string>
+    <string name="Logout">注销</string>
+    <string name="Exit">退出</string>
 
+    <string name="modify_not_null">原密码、新密码、确认密码均不能为空</string>
+    <string name="modify_not_equal">确认密码需与新密码保持一致</string>
+    <string name="modify_not_right">原密码错误</string>
+    <string name="modify_success">修改成功</string>
 
+    <string name="test1">TEST1</string>
+    <string name="test">TEST</string>
+    <string name="now">当前状态</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
 </resources>

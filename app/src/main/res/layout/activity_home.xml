@@ -30,11 +30,10 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
     <ListView
-        android:id="@+id/choose_list"
+        android:id="@+id/lv_project"
         android:layout_width="match_parent"
         android:layout_height="570dp">
     </ListView>
-
 
     <RadioGroup
         android:id="@+id/main_menu"
@@ -100,5 +99,7 @@
             android:textSize="10dp"
             android:text="我的"/>
     </RadioGroup>
+
+
 
 </LinearLayout>

@@ -25,6 +25,8 @@ public class CommonRequest {
         requestParam.put(paramKey, paramValue);
     }
 
+
+
     //组装成json字符串
     public String getJsonStr() {
         JSONObject object = new JSONObject();
