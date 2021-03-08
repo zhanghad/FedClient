@@ -3,6 +3,6 @@
     <dbname value="User" />
     <version value="1" />
     <list>
-        <mapping class="com.fed.Data.User"/>
+        <mapping class="com.fedclient.data.User"/>
     </list>
 </litepal>

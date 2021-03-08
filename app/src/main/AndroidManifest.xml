@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name="com.fed.Activity.MainActivity">
+            android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -24,42 +24,42 @@
         </activity>
 
         <activity
-            android:name="com.fed.Activity.RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:label="Register Activity">
         </activity>
         <activity
-            android:name="com.fed.Activity.HomeActivity"
+            android:name=".activity.HomeActivity"
             android:label="Home Activity">
         </activity>
         <activity
-            android:name="com.fed.Activity.HistoryActivity"
+            android:name=".activity.HistoryActivity"
             android:label="History Activity">
         </activity>
         <activity
-            android:name="com.fed.Activity.NowActivity"
+            android:name=".activity.TrainStatusActivity"
             android:label="Now Activity">
         </activity>
         <activity
-            android:name="com.fed.Activity.MineActivity"
+            android:name=".activity.ClientInfoActivity"
             android:label="Mine Activity">
         </activity>
         <activity
-            android:name="com.fed.Activity.ShezhiActivity">
+            android:name=".activity.ConfigActivity">
         </activity>
         <activity
-            android:name="com.fed.Details">
+            android:name=".Details">
         </activity>
         <activity
-            android:name="com.fed.Details_history">
+            android:name=".Details_history">
         </activity>
         <activity
-            android:name="com.fed.ChooseData">
+            android:name=".ChooseData">
         </activity>
 
 
         <!--websocket服务-->
         <service
-            android:name="com.fed.websocket.WebSocketService"
+            android:name=".fed.websocket.WebSocketService"
             android:enabled="true"
             android:exported="true" />
 
