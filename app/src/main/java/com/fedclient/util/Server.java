@@ -4,7 +4,8 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.fedclient.data.Record;
+import com.fedclient.manager.ClientManager;
+import com.fedclient.trash.Consts;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,8 +87,8 @@ public class Server {
     public String setNickname(String nickname){
         CommonRequest request = new CommonRequest();
         request.setRequestCode(Consts.REQUESTCODE_NICKNAME);
-        request.addRequestParam("username",UserManager.getCurrentUser().getUsername());
-        request.addRequestParam("nickname",nickname);
+        request.addRequestParam("loginName", ClientManager.getCurrentClient().getClientName());
+        request.addRequestParam("clientName",nickname);
         try {
             infoPost(Consts.URL_SetInfo,request.getJsonStr());
             Thread.sleep(sleepTime);
@@ -100,7 +101,7 @@ public class Server {
     public String setUserscore(String userscore){
         CommonRequest request = new CommonRequest();
         request.setRequestCode(Consts.REQUESTCODE_USERCORE);
-        request.addRequestParam("username",UserManager.getCurrentUser().getUsername());
+        request.addRequestParam("username", ClientManager.getCurrentClient().getLoginName());
         request.addRequestParam("userscore",userscore);
         try {
             infoPost(Consts.URL_SetInfo,request.getJsonStr());
@@ -111,10 +112,11 @@ public class Server {
         return resCode;
     }
 
+    /*
     public ArrayList<Record> getRecords(){
         CommonRequest request = new CommonRequest();
         request.setRequestCode(Consts.REQUESTCODE_RECORD);
-        request.addRequestParam("username",UserManager.getCurrentUser().getUsername());
+        request.addRequestParam("username", ClientManager.getCurrentClient().getLoginName());
         try {
             infoPost(Consts.URL_GetInfo, request.getJsonStr());
             Thread.sleep(sleepTime);
@@ -124,7 +126,7 @@ public class Server {
         ArrayList<Record> recordList = new ArrayList<>();
         for(HashMap<String,String> dataMap:dataList){
             Record record = new Record();
-            record.setUser(UserManager.getCurrentUser());
+            record.setUser(ClientManager.getCurrentClient());
 
             record.save();// 同时存入本地数据库
             recordList.add(record);
@@ -132,6 +134,8 @@ public class Server {
         dataList.clear();
         return recordList;
     }
+
+     */
 
 
 }

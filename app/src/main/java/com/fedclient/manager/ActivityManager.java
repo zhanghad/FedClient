@@ -1,11 +1,13 @@
-package com.fedclient.util;
+package com.fedclient.manager;
 
 import android.app.Activity;
+
+import com.fedclient.util.ACache;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityController {
+public class ActivityManager {
     public static List<Activity> activitys = new ArrayList<Activity>();
 
     public static void addActivity(Activity activity) {

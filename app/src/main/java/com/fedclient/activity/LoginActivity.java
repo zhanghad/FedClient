@@ -15,23 +15,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fedclient.R;
 
-import com.fedclient.data.User;
+import com.fedclient.constants.AndroidConstants;
+import com.fedclient.constants.UrlConstants;
+import com.fedclient.domain.Client;
 import com.fedclient.util.SharedPreferencesUtil;
 import com.fedclient.util.Util;
 import com.fedclient.util.CommonRequest;
-import com.fedclient.util.CommonResponse;
 import com.fedclient.util.HttpUtil;
-import com.fedclient.util.Consts;
-import com.fedclient.util.UserManager;
+import com.fedclient.manager.ClientManager;
 
 import org.jetbrains.annotations.NotNull;
 import org.litepal.LitePal;
 import org.litepal.crud.DataSupport;
 
 import java.io.IOException;
-import java.util.Objects;
 
 import okhttp3.Call;
+import okhttp3.HttpUrl;
 import okhttp3.Response;
 
 
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login;
     private Button btn_register;
     private CheckBox isRememberPwd;
-    private String username,password,spPsw;
+    private String loginName,password,spPsw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         isRememberPwd = findViewById(R.id.isRememberPwd);
 
         LitePal.getDatabase();
-        UserManager.clear();
+        ClientManager.clear();
     }
 
     /**
@@ -112,42 +112,50 @@ public class LoginActivity extends AppCompatActivity {
      * 登录逻辑
      */
     private void Login(){
-
-        CommonRequest request = new CommonRequest();
-        username = Util.StringHandle(et_username.getText().toString());
+        loginName = Util.StringHandle(et_username.getText().toString());
         password = Util.StringHandle(et_password.getText().toString());
-
-        String resMsg = checkDataValid(username, password);
+        String resMsg = checkDataValid(loginName, password);
         if (!resMsg.equals((""))) {
             showResponse(resMsg);
             return;
         }
 
-        request.addRequestParam("username",username);
-        request.addRequestParam("pwd",password);
+        //暂未考虑加密
+        CommonRequest request = new CommonRequest();
+        HttpUrl url=HttpUrl.parse(UrlConstants.LOGIN_URL).newBuilder()
+                .addQueryParameter("loginName", loginName)
+                .addQueryParameter("password",password)
+                .build();
 
         /**
          * 发送登录请求
          */
-        HttpUtil.sendPost(Consts.URL_Login, request.getJsonStr(), new okhttp3.Callback() {
+        HttpUtil.sendPost(url.toString(), request.toString(), new okhttp3.Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
 
-                CommonResponse res = new CommonResponse(Objects.requireNonNull(response.body()).string());
+/*                CommonResponse res = new CommonResponse(Objects.requireNonNull(response.body()).string());
                 String resCode = res.getResCode();
-                String resMsg = res.getResMsg();
+                String resMsg = res.getResMsg();*/
+                String temp=response.body().string();
+
                 // 登录成功
-                if (resCode.equals(Consts.SUCCESSCODE_LOGIN)) {
+                if (temp.equals(AndroidConstants.LOGIN_SUCCESS)) {
                     // 查找本地数据库中是否已存在当前用户,不存在则新建用户并写入
-                    User user = DataSupport.where("username=?",username).findFirst(User.class);
-                    if(user == null){
-                        user = new User();
-                        user.setUsername(username);
-                        user.setPassword(password);
+                    Client client = DataSupport.where("loginName=?", loginName).findFirst(Client.class);
+                    if(client == null){
+                        client = new Client();
+                        client.setLoginName(loginName);
+                        client.setPassword(password);
                     }
-                    //UserManager.setCurrentUser(user);// 设置当前用户
+                    ClientManager.setCurrentClient(client);// 设置当前用户
+                    //跳转
+                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                    startActivity(intent);
+                }else {
+                    showResponse(resMsg);
                 }
-                showResponse(resMsg);
+
             }
             @Override
             public void onFailure(Call call, IOException e) {

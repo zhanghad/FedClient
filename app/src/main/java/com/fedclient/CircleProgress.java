@@ -16,7 +16,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.fedclient.util.Constant;
+import com.fedclient.trash.Constant;
 import com.fedclient.util.MiscUtil;
 
 

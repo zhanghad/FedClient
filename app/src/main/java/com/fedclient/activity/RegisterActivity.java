@@ -13,7 +13,7 @@ import com.fedclient.util.Util;
 import com.fedclient.util.CommonRequest;
 import com.fedclient.util.CommonResponse;
 import com.fedclient.util.HttpUtil;
-import com.fedclient.util.Consts;
+import com.fedclient.trash.Consts;
 
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.IOException;

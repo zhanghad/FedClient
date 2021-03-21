@@ -1,4 +1,4 @@
-package com.fedclient.util;
+package com.fedclient.trash;
 
 public class Consts {
 

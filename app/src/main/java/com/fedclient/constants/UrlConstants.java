@@ -9,8 +9,10 @@ public class UrlConstants {
 
     /**
      * 服务端基址，本地测试时使用 http://localhost:8080/android/
+     *
+     * android 将本机地址设为 10.0.2.2
      */
-    private static final String URL_BASE = "http://localhost:8080/android/";
+    private static final String URL_BASE = "http://10.0.2.2:8080/android/";
 
     /**
      * 登录

@@ -216,4 +216,18 @@ public class Client extends BaseEntity
             .append("clientLogList", getClientLogList())
             .toString();
     }
+
+
+    private byte[] avatarImage;
+
+    public byte[] getAvatarImage() {
+        return avatarImage;
+    }
+
+    public void setAvatarImage(byte[] avatarImage) {
+        this.avatarImage = avatarImage;
+    }
+
+
+
 }

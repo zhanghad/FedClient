@@ -1,7 +1,7 @@
-package com.fedclient.util;
+package com.fedclient.trash;
 
-import com.fedclient.data.Record;
-import com.fedclient.data.User;
+import com.fedclient.trash.data.Record;
+import com.fedclient.trash.data.User;
 
 import org.litepal.crud.DataSupport;
 

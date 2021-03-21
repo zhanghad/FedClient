@@ -9,12 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.fedclient.data.User;
+import com.fedclient.domain.Client;
 import com.fedclient.util.CommonRequest;
 import com.fedclient.util.CommonResponse;
-import com.fedclient.util.Consts;
+import com.fedclient.trash.Consts;
 import com.fedclient.util.HttpUtil;
-import com.fedclient.util.UserManager;
+import com.fedclient.manager.ClientManager;
 import com.fedclient.util.Util;
 import com.fedclient.R;
 import java.io.IOException;
@@ -74,15 +74,15 @@ public class ModifyPwdActivity extends Activity {
                     return;
                 }
                 // 原密码错误
-                final User user = UserManager.getCurrentUser();
-                if(!oldPwd.equals(user.getPassword())){
+                final Client client = ClientManager.getCurrentClient();
+                if(!oldPwd.equals(client.getPassword())){
                     Util.makeToast(ModifyPwdActivity.this,getResources().getString(R.string.modify_not_right));
                     return;
                 }
                 // 提交到服务器
                 CommonRequest request = new CommonRequest();
-                request.addRequestParam("Username",user.getUsername());
-                request.addRequestParam("pwd",newPwd);
+                request.addRequestParam("loginName",client.getLoginName());
+                request.addRequestParam("password",newPwd);
                 // POST请求
                 HttpUtil.sendPost(Consts.URL_ModifyPwd, request.getJsonStr(), new okhttp3.Callback() {
                     @Override
@@ -93,7 +93,7 @@ public class ModifyPwdActivity extends Activity {
                         // 修改密码成功
                         if (resCode.equals(Consts.SUCCESSCODE_MODIFYPWD)) {
                             // 保存到本地数据库
-                            user.setPassword(newPwd);
+                            client.setPassword(newPwd);
 
                         }
                         showResponse(resMsg);

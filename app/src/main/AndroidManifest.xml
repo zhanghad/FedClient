@@ -37,14 +37,15 @@
         </activity>
         <activity
             android:name=".activity.TrainStatusActivity"
-            android:label="Now Activity">
+            android:label="TrainStatus Activity">
         </activity>
         <activity
             android:name=".activity.ClientInfoActivity"
-            android:label="Mine Activity">
+            android:label="ClientInfo Activity">
         </activity>
         <activity
-            android:name=".activity.ConfigActivity">
+            android:name=".activity.ConfigActivity"
+            android:label="Config Activity">
         </activity>
         <activity
             android:name=".Details">

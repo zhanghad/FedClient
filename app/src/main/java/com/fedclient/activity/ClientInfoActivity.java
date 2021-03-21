@@ -20,32 +20,27 @@ import android.widget.TextView;
 
 import android.widget.Toast;
 
-import com.fedclient.data.Record;
-
 import java.io.IOException;
 import java.util.HashMap;
 
 import okhttp3.Call;
 import okhttp3.Response;
 
+import com.fedclient.domain.Client;
 import com.fedclient.util.CommonRequest;
 import com.fedclient.util.CommonResponse;
-import com.fedclient.util.Consts;
-import com.fedclient.util.Database;
+import com.fedclient.trash.Consts;
 import com.fedclient.util.HttpUtil;
 import com.fedclient.util.SharedPreferencesUtil;
-import com.fedclient.util.UserManager;
+import com.fedclient.manager.ClientManager;
 import com.fedclient.util.Util;
 import com.fedclient.R;
 import org.deeplearning4j.nn.workspace.LayerWorkspaceMgr;
 
-import java.util.List;
-
 import com.fedclient.util.PhotoUtil;
-import com.fedclient.data.User;
 import com.fedclient.util.ACache;
 import com.fedclient.util.Server;
-import com.fedclient.util.ActivityController;
+import com.fedclient.manager.ActivityManager;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -85,23 +80,25 @@ public class ClientInfoActivity extends Activity {
         initData();
     }
 
+    /**
+     * 初始化组件
+     */
     void initView(){
         aCache = ACache.get(ClientInfoActivity.this);
-        HomeActivity activity = (HomeActivity) ActivityController.getActivity(HomeActivity.class);
+        HomeActivity activity = (HomeActivity) ActivityManager.getActivity(HomeActivity.class);
         handler = activity.handler;
-
         tx_account = findViewById(R.id.tx_account);
         tx_Userscore = findViewById(R.id.tx_Userscore);
         tx_Nickname = (TextView)findViewById(R.id.tx_nickname);
-
         btn_nickname = findViewById(R.id.btn_nickname);
         btn_password = findViewById(R.id.btn_password);
         btn_exit = findViewById(R.id.btn_exit);
-
         iv_head= findViewById(R.id.iv_head);
-
     }
 
+    /**
+     * 设置监听
+     */
     void setListeners(){
 
         // 修改昵称
@@ -120,8 +117,8 @@ public class ClientInfoActivity extends Activity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // 保存昵称
                         String nickname = nicknameEdit.getText().toString();
-                        User user = UserManager.getCurrentUser();
-                        user.setNickname(nickname);
+                        Client client = ClientManager.getCurrentClient();
+                        client.setClientName(nickname);
                         //user.save();
                         server.setNickname(nickname);
                         // 更改显示
@@ -141,7 +138,7 @@ public class ClientInfoActivity extends Activity {
         btn_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = UserManager.getCurrentUser();
+                Client user = ClientManager.getCurrentClient();
                 Intent intent = new Intent(ClientInfoActivity.this,ModifyPwdActivity.class);
                 startActivity(intent);
             }
@@ -153,9 +150,9 @@ public class ClientInfoActivity extends Activity {
             public void onClick(View view) {
                 SharedPreferencesUtil spu = new SharedPreferencesUtil(ClientInfoActivity.this);
                 spu.setParam("isAutoLogin",false);
-                ActivityController.finishAll(LoginActivity.class);
-                ActivityController.clearAcache();
-                UserManager.clear();
+                ActivityManager.finishAll(LoginActivity.class);
+                ActivityManager.clearAcache();
+                ClientManager.clear();
             }
         });
 
@@ -165,19 +162,21 @@ public class ClientInfoActivity extends Activity {
 
     void initData(){
         // 初始化用户记录
-        User user = UserManager.getCurrentUser();
-        List<Record> recordList = Database.findRecords(user);
+        Client user = ClientManager.getCurrentClient();
 
+        /*
+        List<Record> recordList = Database.findRecords(user);
         if(!recordList.isEmpty() || !(recordList = server.getRecords()).isEmpty()){
             user.getRecordList().addAll(recordList);
             //user.save();
         }
+         */
 
         // 初始化昵称
-        String nickname = user.getNickname();
+        String nickname = user.getClientName();
         if(nickname != null || !(nickname = server.getNickname()).equals("null")){
             Log.e("INIT",nickname);
-            user.setNickname(nickname);
+            user.setClientName(nickname);
             //user.save();
         }else {
             nickname = "Nickname";
@@ -185,6 +184,7 @@ public class ClientInfoActivity extends Activity {
         tx_Nickname.setText(nickname);
 
         //初始化积分
+        /*
         String userscore = user.getUserscore();
         if(userscore != null || !(userscore = server.getUserscore()).equals("null")){
             Log.e("INIT",userscore);
@@ -194,6 +194,7 @@ public class ClientInfoActivity extends Activity {
             userscore = "Userscore";
         }
         tx_Userscore.setText(userscore);
+         */
 
 
         // 初始化头像：缓存->本地数据库->服务器
@@ -202,7 +203,7 @@ public class ClientInfoActivity extends Activity {
             // 数据库加载失败则从服务器加载
             if(user.getAvatarImage() == null){
                 CommonRequest request = new CommonRequest();
-                request.addRequestParam("username",user.getUsername());
+                request.addRequestParam("username",user.getClientName());
                 HttpUtil.sendPost(Consts.URL_DownloadImg,request.getJsonStr(),new okhttp3.Callback() {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
@@ -240,8 +241,8 @@ public class ClientInfoActivity extends Activity {
             }
         });
         // 保存头像到本地数据库
-        User user = UserManager.getCurrentUser();
-        user.setAvatarImage(PhotoUtil.bitmap2Bytes(bitmap));
+        Client client = ClientManager.getCurrentClient();
+        //client.setAvatarImage(PhotoUtil.bitmap2Bytes(bitmap));
         //user.save();
         // 写入缓存
         aCache.put("head",bitmap);

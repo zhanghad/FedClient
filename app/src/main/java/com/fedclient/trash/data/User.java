@@ -1,4 +1,4 @@
-package com.fedclient.data;
+package com.fedclient.trash.data;
 
 import java.util.ArrayList;
 import java.util.List;

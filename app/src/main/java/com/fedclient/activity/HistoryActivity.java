@@ -16,13 +16,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.fedclient.util.Consts;
+import com.fedclient.trash.Consts;
 import com.fedclient.R;
-import com.fedclient.util.UserManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
