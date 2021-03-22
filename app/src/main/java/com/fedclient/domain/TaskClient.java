@@ -2,8 +2,7 @@ package com.fedclient.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import com.fedserver.common.annotation.Excel;
-import com.fedserver.common.core.domain.BaseEntity;
+
 
 /**
  * 任务参与者对象 task_client

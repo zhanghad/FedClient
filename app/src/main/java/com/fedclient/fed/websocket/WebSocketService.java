@@ -7,15 +7,23 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 
+import com.fedclient.constants.AndroidConstants;
+import com.fedclient.constants.UrlConstants;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 
 public class WebSocketService extends Service {
 
     private static final String TAG = "WebSocketController";
-    public static final String wsUrl="ws://192.168.1.3:8887/";
+    private String wsUrl = UrlConstants.WS_TEST;
     private FedWebSocketClient fedWebSocketClient;
 
+    public WebSocketService(){}
+
+    public WebSocketService(String wsUrl){
+        this.wsUrl=wsUrl;
+    }
 
     @Nullable
     @Override

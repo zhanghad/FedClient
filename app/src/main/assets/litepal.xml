@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<litepal>
-    <dbname value="User" />
-    <version value="1" />
-    <list>
-        <mapping class="com.fedclient.trash.data.User"/>
-    </list>
-</litepal>

@@ -1,4 +1,4 @@
-package com.fedclient.activity;
+package com.fedclient.ui.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,19 +14,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fedclient.R;
-
 import com.fedclient.constants.AndroidConstants;
 import com.fedclient.constants.UrlConstants;
 import com.fedclient.domain.Client;
 import com.fedclient.util.SharedPreferencesUtil;
-import com.fedclient.util.Util;
+import com.fedclient.util.CommonUtil;
 import com.fedclient.util.CommonRequest;
 import com.fedclient.util.HttpUtil;
 import com.fedclient.manager.ClientManager;
 
 import org.jetbrains.annotations.NotNull;
-import org.litepal.LitePal;
-import org.litepal.crud.DataSupport;
+//import org.litepal.LitePal;
 
 import java.io.IOException;
 
@@ -55,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initComponents();
         setListeners();
-        LitePal.initialize(this);
+//        LitePal.initialize(this);
 
         SharedPreferencesUtil spu = new SharedPreferencesUtil(this);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -74,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * 初始化组件
      */
-    void initComponents(){
+    private void initComponents(){
         et_username = findViewById(R.id.et_Username);
         et_password = findViewById(R.id.et_password);
         btn_login = findViewById(R.id.btn_Login);
@@ -82,14 +80,14 @@ public class LoginActivity extends AppCompatActivity {
         et_password.setInputType(129); //密码不可视
         isRememberPwd = findViewById(R.id.isRememberPwd);
 
-        LitePal.getDatabase();
+//        LitePal.getDatabase();
         ClientManager.clear();
     }
 
     /**
      * 设置监听
      */
-    void setListeners(){
+    private void setListeners(){
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -112,8 +111,8 @@ public class LoginActivity extends AppCompatActivity {
      * 登录逻辑
      */
     private void Login(){
-        loginName = Util.StringHandle(et_username.getText().toString());
-        password = Util.StringHandle(et_password.getText().toString());
+        loginName = CommonUtil.StringHandle(et_username.getText().toString());
+        password = CommonUtil.StringHandle(et_password.getText().toString());
         String resMsg = checkDataValid(loginName, password);
         if (!resMsg.equals((""))) {
             showResponse(resMsg);
@@ -133,14 +132,10 @@ public class LoginActivity extends AppCompatActivity {
         HttpUtil.sendPost(url.toString(), request.toString(), new okhttp3.Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-
-/*                CommonResponse res = new CommonResponse(Objects.requireNonNull(response.body()).string());
-                String resCode = res.getResCode();
-                String resMsg = res.getResMsg();*/
                 String temp=response.body().string();
-
                 // 登录成功
                 if (temp.equals(AndroidConstants.LOGIN_SUCCESS)) {
+                    /*
                     // 查找本地数据库中是否已存在当前用户,不存在则新建用户并写入
                     Client client = DataSupport.where("loginName=?", loginName).findFirst(Client.class);
                     if(client == null){
@@ -148,12 +143,17 @@ public class LoginActivity extends AppCompatActivity {
                         client.setLoginName(loginName);
                         client.setPassword(password);
                     }
+                    */
+
+                    Client client = new Client();
+                    client.setLoginName(loginName);
+                    client.setPassword(password);
                     ClientManager.setCurrentClient(client);// 设置当前用户
                     //跳转
                     Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                     startActivity(intent);
                 }else {
-                    showResponse(resMsg);
+                    CommonUtil.makeToast(LoginActivity.this,resMsg);
                 }
 
             }

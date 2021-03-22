@@ -16,7 +16,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.fedclient.trash.Constant;
+import com.fedclient.constants.AndroidConstants;
 import com.fedclient.util.MiscUtil;
 
 
@@ -85,7 +85,7 @@ public class CircleProgress extends View {
 
     private void init(Context context, AttributeSet attrs) {
         mContext = context;
-        mDefaultSize = MiscUtil.dipToPx(mContext, Constant.DEFAULT_SIZE);
+        mDefaultSize = MiscUtil.dipToPx(mContext, AndroidConstants.DEFAULT_SIZE);
         mAnimator = new ValueAnimator();
         mRectF = new RectF();//画矩形
         mCenterPoint = new Point();
@@ -97,36 +97,36 @@ public class CircleProgress extends View {
     private void initAttrs(AttributeSet attrs) {
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
 
-        antiAlias = typedArray.getBoolean(R.styleable.CircleProgressBar_antiAlias, Constant.ANTI_ALIAS);
+        antiAlias = typedArray.getBoolean(R.styleable.CircleProgressBar_antiAlias, AndroidConstants.ANTI_ALIAS);
 
         mHint = typedArray.getString(R.styleable.CircleProgressBar_hint);
         mHintColor = typedArray.getColor(R.styleable.CircleProgressBar_hintColor, Color.BLACK);
-        mHintSize = typedArray.getDimension(R.styleable.CircleProgressBar_hintSize, Constant.DEFAULT_HINT_SIZE);
+        mHintSize = typedArray.getDimension(R.styleable.CircleProgressBar_hintSize, AndroidConstants.DEFAULT_HINT_SIZE);
 
-        mValue = typedArray.getFloat(R.styleable.CircleProgressBar_value, Constant.DEFAULT_VALUE);//50
-        mMaxValue = typedArray.getFloat(R.styleable.CircleProgressBar_maxValue, Constant.DEFAULT_MAX_VALUE);//100
+        mValue = typedArray.getFloat(R.styleable.CircleProgressBar_value, AndroidConstants.DEFAULT_VALUE);//50
+        mMaxValue = typedArray.getFloat(R.styleable.CircleProgressBar_maxValue, AndroidConstants.DEFAULT_MAX_VALUE);//100
 
         //内容数值精度格式
         mPrecision = typedArray.getInt(R.styleable.CircleProgressBar_precision, 0);
         mPrecisionFormat = MiscUtil.getPrecisionFormat(mPrecision);
 
         mValueColor = typedArray.getColor(R.styleable.CircleProgressBar_valueColor, Color.BLACK);
-        mValueSize = typedArray.getDimension(R.styleable.CircleProgressBar_valueSize, Constant.DEFAULT_VALUE_SIZE);
+        mValueSize = typedArray.getDimension(R.styleable.CircleProgressBar_valueSize, AndroidConstants.DEFAULT_VALUE_SIZE);
 
         mUnit = typedArray.getString(R.styleable.CircleProgressBar_unit);
         mUnitColor = typedArray.getColor(R.styleable.CircleProgressBar_unitColor, Color.BLACK);
-        mUnitSize = typedArray.getDimension(R.styleable.CircleProgressBar_unitSize, Constant.DEFAULT_UNIT_SIZE);
+        mUnitSize = typedArray.getDimension(R.styleable.CircleProgressBar_unitSize, AndroidConstants.DEFAULT_UNIT_SIZE);
 
-        mArcWidth = typedArray.getDimension(R.styleable.CircleProgressBar_arcWidth, Constant.DEFAULT_ARC_WIDTH);
-        mStartAngle = typedArray.getFloat(R.styleable.CircleProgressBar_startAngle, Constant.DEFAULT_START_ANGLE);
-        mSweepAngle = typedArray.getFloat(R.styleable.CircleProgressBar_sweepAngle, Constant.DEFAULT_SWEEP_ANGLE);
+        mArcWidth = typedArray.getDimension(R.styleable.CircleProgressBar_arcWidth, AndroidConstants.DEFAULT_ARC_WIDTH);
+        mStartAngle = typedArray.getFloat(R.styleable.CircleProgressBar_startAngle, AndroidConstants.DEFAULT_START_ANGLE);
+        mSweepAngle = typedArray.getFloat(R.styleable.CircleProgressBar_sweepAngle, AndroidConstants.DEFAULT_SWEEP_ANGLE);
 
         mBgArcColor = typedArray.getColor(R.styleable.CircleProgressBar_bgArcColor, Color.WHITE);
-        mBgArcWidth = typedArray.getDimension(R.styleable.CircleProgressBar_bgArcWidth, Constant.DEFAULT_ARC_WIDTH);//圆弧宽度(一般和背景圆弧宽度相等)
+        mBgArcWidth = typedArray.getDimension(R.styleable.CircleProgressBar_bgArcWidth, AndroidConstants.DEFAULT_ARC_WIDTH);//圆弧宽度(一般和背景圆弧宽度相等)
         mTextOffsetPercentInRadius = typedArray.getFloat(R.styleable.CircleProgressBar_textOffsetPercentInRadius, 0.33f);
 
 //        mPercent = typedArray.getFloat(R.styleable.CircleProgressBar_percent, 0);
-        mAnimTime = typedArray.getInt(R.styleable.CircleProgressBar_animTime, Constant.DEFAULT_ANIM_TIME);
+        mAnimTime = typedArray.getInt(R.styleable.CircleProgressBar_animTime, AndroidConstants.DEFAULT_ANIM_TIME);
 
         int gradientArcColors = typedArray.getResourceId(R.styleable.CircleProgressBar_arcColors, 0);//圆弧颜色
         Log.i(TAG, "initAttrs: gradientArcColors::"+gradientArcColors);

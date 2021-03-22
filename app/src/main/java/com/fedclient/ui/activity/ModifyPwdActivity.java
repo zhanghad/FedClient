@@ -1,4 +1,4 @@
-package com.fedclient.activity;
+package com.fedclient.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import com.fedclient.util.CommonResponse;
 import com.fedclient.trash.Consts;
 import com.fedclient.util.HttpUtil;
 import com.fedclient.manager.ClientManager;
-import com.fedclient.util.Util;
+import com.fedclient.util.CommonUtil;
 import com.fedclient.R;
 import java.io.IOException;
 
@@ -35,12 +35,11 @@ public class ModifyPwdActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modifypwd);
-
-        initView();
+        initComponents();
         setListeners();
     }
 
-    void initView(){
+    private void initComponents(){
         back = findViewById(R.id.back);
         oldPwdEdit = findViewById(R.id.modify_pwd_old);
         newPwdEdit = findViewById(R.id.modify_pwd_new);
@@ -49,7 +48,7 @@ public class ModifyPwdActivity extends Activity {
         cancelBtn = findViewById(R.id.modify_cancel);
     }
 
-    void setListeners(){
+    private void setListeners(){
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,18 +64,18 @@ public class ModifyPwdActivity extends Activity {
                 final String newPwd = newPwdEdit.getText().toString();
                 String confirmPwd = confirmPwdEdit.getText().toString();
                 if(TextUtils.isEmpty(oldPwd) || TextUtils.isEmpty(newPwd) || TextUtils.isEmpty(confirmPwd)){
-                    Util.makeToast(ModifyPwdActivity.this,getResources().getString(R.string.modify_not_null));
+                    CommonUtil.makeToast(ModifyPwdActivity.this,getResources().getString(R.string.modify_not_null));
                     return;
                 }
                 // 两次输入的密码不一致
                 if(!newPwd.equals(confirmPwd)){
-                    Util.makeToast(ModifyPwdActivity.this,getResources().getString(R.string.modify_not_equal));
+                    CommonUtil.makeToast(ModifyPwdActivity.this,getResources().getString(R.string.modify_not_equal));
                     return;
                 }
                 // 原密码错误
                 final Client client = ClientManager.getCurrentClient();
                 if(!oldPwd.equals(client.getPassword())){
-                    Util.makeToast(ModifyPwdActivity.this,getResources().getString(R.string.modify_not_right));
+                    CommonUtil.makeToast(ModifyPwdActivity.this,getResources().getString(R.string.modify_not_right));
                     return;
                 }
                 // 提交到服务器

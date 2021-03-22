@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg0">
@@ -22,6 +23,7 @@
             android:text="可选项目列表">
         </TextView>
     </FrameLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
@@ -29,11 +31,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
     <ListView
         android:id="@+id/lv_project"
         android:layout_width="match_parent"
         android:layout_height="570dp">
     </ListView>
+
 
     <RadioGroup
         android:id="@+id/main_menu"

@@ -1,5 +1,7 @@
 package com.fedclient.util;
 
+import com.google.gson.Gson;
+
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
@@ -12,18 +14,27 @@ import okhttp3.RequestBody;
 public class HttpUtil {
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private static OkHttpClient client = new OkHttpClient();
+    private static final OkHttpClient client = new OkHttpClient();
 
-    //get(无参数
-    public static void sendRequest(String address, okhttp3.Callback callback){
+    /**
+     *
+     * @param address
+     * @param callback
+     */
+    public static void sendGet(String address, okhttp3.Callback callback){
         Request request = new Request.Builder()
                 .url(address)
                 .build();
         client.newCall(request).enqueue(callback);
     }
 
-    //get(参数为map字符串
-    public static void sendRequest(String address, LinkedHashMap<String,String>params, okhttp3.Callback callback){
+    /**
+     *
+     * @param address
+     * @param params
+     * @param callback
+     */
+    public static void sendGet(String address, LinkedHashMap<String,String>params, okhttp3.Callback callback){
         // 执行GET请求，将请求结果回调到okhttp3.Callback中
         address = attachHttpGetParams(address,params);
         Request request = new Request.Builder()
@@ -32,7 +43,12 @@ public class HttpUtil {
         client.newCall(request).enqueue(callback);
     }
 
-    //post(参数 字符串为map
+    /**
+     *
+     * @param address   地址
+     * @param params  参数
+     * @param callback
+     */
     public static void sendPost(String address,LinkedHashMap<String,String> params, okhttp3.Callback callback){
         FormBody.Builder builder = new FormBody.Builder();
         // builder填充参数，构造请求体
@@ -51,11 +67,15 @@ public class HttpUtil {
         client.newCall(request).enqueue(callback);
     }
 
-    //post(参数 json
-    public static void sendPost(String address, String json, okhttp3.Callback callback) {
-        //创建一个RequestBody(参数1：数据类型 参数2传递的json串)
-        RequestBody requestBody = RequestBody.create(JSON, json);
-        //创建一个请求对象
+    /**
+     *
+     * @param address   请求地址
+     * @param object 请求体，对象
+     * @param callback  回调函数
+     */
+    public static void sendPost(String address, Object object, okhttp3.Callback callback) {
+        RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8")
+                , new Gson().toJson(object));
         Request request = new Request.Builder()
                 .url(address)
                 .post(requestBody)

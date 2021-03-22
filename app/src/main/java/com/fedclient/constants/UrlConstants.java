@@ -14,6 +14,10 @@ public class UrlConstants {
      */
     private static final String URL_BASE = "http://10.0.2.2:8080/android/";
 
+
+    public  static final String WS_TEST = "ws://10.0.2.2:10000";
+
+
     /**
      * 登录
      */

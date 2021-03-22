@@ -18,9 +18,8 @@ import java.nio.ByteBuffer;
 public class FedWebSocketClient extends WebSocketClient {
 
     private static final String TAG = "FedWebSocketClient";
-    private static final Message clientMessage=new Message();
+    private Message clientMessage=new Message();
     private MultiRegression multiRegression = new MultiRegression();
-
 
 
     public FedWebSocketClient(URI serverUri) {
@@ -96,6 +95,7 @@ public class FedWebSocketClient extends WebSocketClient {
             }else {
                 Log.i(TAG, "onMessage: ByteBufferUtil.getObject(message)");
                 object = ByteBufferUtil.getObject(message);
+                Log.i(TAG, "onMessage: ByteBufferUtil"+object.getClass()+" "+object);
             }
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
@@ -131,7 +131,7 @@ public class FedWebSocketClient extends WebSocketClient {
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        Log.i(TAG, "onClose: " + code + " " + reason);
+        Log.i(TAG, "onClose: " + code + " \n" + reason);
     }
 
     @Override

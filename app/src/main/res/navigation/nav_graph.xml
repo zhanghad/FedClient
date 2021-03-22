@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeActivity">
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.fedclient.ui.activity.HomeActivity"
+        android:label="HomeActivity" >
+        <action
+            android:id="@+id/action_homeActivity_to_clientInfoActivity"
+            app:destination="@id/clientInfoActivity" />
+        <action
+            android:id="@+id/action_homeActivity_to_configActivity"
+            app:destination="@id/configActivity" />
+        <action
+            android:id="@+id/action_homeActivity_to_historyActivity"
+            app:destination="@id/historyActivity" />
+        <action
+            android:id="@+id/action_homeActivity_to_trainStatusActivity"
+            app:destination="@id/trainStatusActivity" />
+    </activity>
+    <activity
+        android:id="@+id/clientInfoActivity"
+        android:name="com.fedclient.ui.activity.ClientInfoActivity"
+        android:label="ClientInfoActivity" />
+    <activity
+        android:id="@+id/configActivity"
+        android:name="com.fedclient.ui.activity.ConfigActivity"
+        android:label="ConfigActivity" />
+    <activity
+        android:id="@+id/historyActivity"
+        android:name="com.fedclient.ui.activity.HistoryActivity"
+        android:label="HistoryActivity" >
+        <action
+            android:id="@+id/action_historyActivity_to_clientInfoActivity"
+            app:destination="@id/clientInfoActivity" />
+        <action
+            android:id="@+id/action_historyActivity_to_configActivity"
+            app:destination="@id/configActivity" />
+        <action
+            android:id="@+id/action_historyActivity_to_trainStatusActivity"
+            app:destination="@id/trainStatusActivity" />
+        <action
+            android:id="@+id/action_historyActivity_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </activity>
+    <activity
+        android:id="@+id/trainStatusActivity"
+        android:name="com.fedclient.ui.activity.TrainStatusActivity"
+        android:label="TrainStatusActivity" >
+        <action
+            android:id="@+id/action_trainStatusActivity_to_clientInfoActivity"
+            app:destination="@id/clientInfoActivity" />
+    </activity>
+</navigation>

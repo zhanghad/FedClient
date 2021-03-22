@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.fedclient.activity.HistoryActivity;
+import com.fedclient.ui.activity.HistoryActivity;
 
 public class Details_history extends Activity {
 

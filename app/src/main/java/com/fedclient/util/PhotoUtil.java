@@ -88,7 +88,7 @@ public class PhotoUtil {
      * 构建uri
      */
     private Uri buildUri(Activity activity){
-        if(Util.isSdcardExisting()){
+        if(CommonUtil.isSdcardExisting()){
             return Uri.fromFile(Environment.getExternalStorageDirectory()).buildUpon().appendPath(CROP_FILE_NAME).build();
         } else {
             return Uri.fromFile(activity.getCacheDir()).buildUpon().appendPath(CROP_FILE_NAME).build();

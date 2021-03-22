@@ -1,4 +1,4 @@
-package com.fedclient.activity;
+package com.fedclient.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +15,7 @@ public class TrainStatusActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_trainstatus);
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {

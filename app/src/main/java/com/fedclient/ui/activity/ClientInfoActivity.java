@@ -1,4 +1,4 @@
-package com.fedclient.activity;
+package com.fedclient.ui.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -33,7 +33,7 @@ import com.fedclient.trash.Consts;
 import com.fedclient.util.HttpUtil;
 import com.fedclient.util.SharedPreferencesUtil;
 import com.fedclient.manager.ClientManager;
-import com.fedclient.util.Util;
+import com.fedclient.util.CommonUtil;
 import com.fedclient.R;
 import org.deeplearning4j.nn.workspace.LayerWorkspaceMgr;
 
@@ -122,7 +122,7 @@ public class ClientInfoActivity extends Activity {
                         //user.save();
                         server.setNickname(nickname);
                         // 更改显示
-                        Util.makeToast(ClientInfoActivity.this,getResources().getString(R.string.modify_success));
+                        CommonUtil.makeToast(ClientInfoActivity.this,getResources().getString(R.string.modify_success));
                         // 通知MainActivity更新昵称
                         Message message = new Message();
                         message.what = 2;

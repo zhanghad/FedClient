@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
-public class Util {
+public class CommonUtil {
 
     /**
      * @description 处理字符串

@@ -1,7 +1,9 @@
-package com.fedclient.activity;
+package com.fedclient.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -9,13 +11,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fedclient.R;
-import com.fedclient.util.Util;
+import com.fedclient.constants.AndroidConstants;
+import com.fedclient.constants.UrlConstants;
+import com.fedclient.domain.Client;
+import com.fedclient.util.CommonUtil;
 import com.fedclient.util.CommonRequest;
-import com.fedclient.util.CommonResponse;
 import com.fedclient.util.HttpUtil;
-import com.fedclient.trash.Consts;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -29,9 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btn_register;//注册按钮
     private Button btn_to_login; //返回按钮
     private EditText et_username, et_pwd1, et_pwd2;
-    private String user_name, pwd1, pwd2;
-
-
+    private static final String TAG = "RegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedIdnstanceState) {
@@ -51,6 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
         et_username = findViewById(R.id.et_username);
         et_pwd1 = findViewById(R.id.et_pwd1);
         et_pwd2 = findViewById(R.id.et_pwd2);
+        et_pwd1.setInputType(129);
+        et_pwd2.setInputType(129);
     }
 
     /**
@@ -63,6 +69,8 @@ public class RegisterActivity extends AppCompatActivity {
         btn_to_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -82,33 +90,37 @@ public class RegisterActivity extends AppCompatActivity {
      * 注册逻辑
      */
     private void register(){
-        CommonRequest request = new CommonRequest();
 
-        String Username = Util.StringHandle(et_username.getText().toString());
-        String pwd = Util.StringHandle(et_pwd1.getText().toString());
-        String pwd_confirm = Util.StringHandle(et_pwd2.getText().toString());
+        String loginName = CommonUtil.StringHandle(et_username.getText().toString());
+        String password = CommonUtil.StringHandle(et_pwd1.getText().toString());
+        String pwd_confirm = CommonUtil.StringHandle(et_pwd2.getText().toString());
 
-        String resMsg = checkDataValid(Username,pwd,pwd_confirm);
+        String resMsg = checkDataValid(loginName,password,pwd_confirm);
         if(!resMsg.equals("")){
             showResponse(resMsg);
             return;
         }
 
-        request.addRequestParam("Username",Username);
-        request.addRequestParam("pwd",pwd);
+        Client client=new Client();
+        client.setLoginName(loginName);
+        client.setPassword(password);
 
-        HttpUtil.sendPost(Consts.URL_Register, request.getJsonStr(), new okhttp3.Callback() {
+        HttpUtil.sendPost(UrlConstants.REGISTER_URL, client, new okhttp3.Callback() {
+
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                CommonResponse res = new CommonResponse(response.body().string());
-                String resCode = res.getResCode();
-                String resMsg = res.getResMsg();
-                // 显示注册结果
-                showResponse(resMsg);
-                // 注册成功
-                if (resCode.equals(Consts.SUCCESSCODE_REGISTER)) {
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+
+                String data = response.body().string();
+                Log.i(TAG, "onResponse: "+data);
+                if (data.equals(AndroidConstants.REGISTER_SUCCESS)) {
+                    showResponse("注册成功");
+                    Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                    startActivity(intent);
                     finish();
+                }else if(data.equals(AndroidConstants.REGISTER_FAIL)){
+                    showResponse("注册失败");
                 }
+
             }
 
             @Override
@@ -145,8 +157,6 @@ public class RegisterActivity extends AppCompatActivity {
             return getResources().getString(R.string.null_hint);
         if(!pwd.equals(pwd_confirm))
             return getResources().getString(R.string.not_equal_hint);
-//        if(Username.length() != 11 && !Username.contains("@"))
-//            return getResources().getString(R.string.account_invalid_hint);
         return "";
     }
 }

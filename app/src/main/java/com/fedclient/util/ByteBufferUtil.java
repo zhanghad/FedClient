@@ -21,7 +21,7 @@ public class ByteBufferUtil {
 
     public static Object getObject(byte[] bytes) throws IOException, ClassNotFoundException {
         ByteArrayInputStream bi = new ByteArrayInputStream(bytes);
-        ObjectInputStream oi = new ObjectInputStream(bi);
+        MyObjectInputStream oi = new MyObjectInputStream(bi);
         Object obj = oi.readObject();
         bi.close();
         oi.close();
@@ -32,7 +32,7 @@ public class ByteBufferUtil {
 
     public static Object getObject(ByteBuffer byteBuffer) throws ClassNotFoundException, IOException {
         InputStream input = new ByteArrayInputStream(byteBuffer.array());
-        ObjectInputStream oi = new ObjectInputStream(input);
+        MyObjectInputStream oi = new MyObjectInputStream(input);
         Object obj = oi.readObject();
         input.close();
         oi.close();

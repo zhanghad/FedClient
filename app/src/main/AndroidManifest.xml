@@ -3,20 +3,17 @@
     package="com.fedclient">
 
     <!--必备的权限-->
-
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name="org.litepal.LitePalApplication"
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".activity.LoginActivity">
+            android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -24,38 +21,42 @@
         </activity>
 
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name=".ui.activity.RegisterActivity"
             android:label="Register Activity">
         </activity>
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".ui.activity.HomeActivity"
             android:label="Home Activity">
         </activity>
         <activity
-            android:name=".activity.HistoryActivity"
+            android:name=".ui.activity.HistoryActivity"
             android:label="History Activity">
         </activity>
         <activity
-            android:name=".activity.TrainStatusActivity"
+            android:name=".ui.activity.TrainStatusActivity"
             android:label="TrainStatus Activity">
         </activity>
         <activity
-            android:name=".activity.ClientInfoActivity"
+            android:name=".ui.activity.ClientInfoActivity"
             android:label="ClientInfo Activity">
         </activity>
         <activity
-            android:name=".activity.ConfigActivity"
+            android:name=".ui.activity.ConfigActivity"
             android:label="Config Activity">
         </activity>
         <activity
-            android:name=".Details">
+            android:name=".ui.activity.TaskDetailActivity"
+            android:label="TaskDetail Activity">
         </activity>
+        <activity
+            android:name=".ui.activity.DataActivity"
+            android:label="Data Activity">
+        </activity>
+
         <activity
             android:name=".Details_history">
         </activity>
-        <activity
-            android:name=".ChooseData">
-        </activity>
+
 
 
         <!--websocket服务-->
