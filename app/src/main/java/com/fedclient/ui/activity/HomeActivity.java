@@ -52,6 +52,18 @@ public class HomeActivity extends AppCompatActivity {
     private TaskPublishedAdapter list_item;
     List<TaskPublished> taskPublisheds= new ArrayList<TaskPublished>();
 
+    @SuppressLint("HandlerLeak")
+    public Handler handler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    list_item.notifyDataSetChanged();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +101,6 @@ public class HomeActivity extends AppCompatActivity {
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             String data = response.body().string();
 
-                            Log.i(TAG, "onResponse: "+data);
                             Type userListType = new TypeToken<List<TaskPublished>>(){}.getType();
                             taskPublisheds= new Gson().fromJson(data,userListType);
 
@@ -98,13 +109,10 @@ public class HomeActivity extends AppCompatActivity {
                                 taskPublisheds= new ArrayList<TaskPublished>();
                             }
 
-                            Log.d(TAG, "onResponse: "+taskPublisheds.toString());
-
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     Log.d(TAG, "onCreate: "+taskPublisheds.toString());
-                                    //getApplicationContext()
                                     list_item = new TaskPublishedAdapter(HomeActivity.this,taskPublisheds,R.layout.view_tplist);
                                     lv_project.setAdapter(list_item);
                                 }
@@ -168,18 +176,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-    @SuppressLint("HandlerLeak")
-    public Handler handler = new Handler() {
 
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 1:
-                    list_item.notifyDataSetChanged();
-                    break;
-            }
-        }
-    };
 
 
 }

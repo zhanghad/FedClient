@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.fedclient.fed.message.Message;
 import com.fedclient.fed.train.model.MultiRegression;
+import com.fedclient.ui.callback.TaskCallback;
 import com.fedclient.util.ByteBufferUtil;
 import com.fedclient.fed.message.Constant;
 
@@ -21,9 +22,11 @@ public class FedWebSocketClient extends WebSocketClient {
     private Message clientMessage=new Message();
     private MultiRegression multiRegression = new MultiRegression();
 
+    private TaskCallback taskCallback;
 
-    public FedWebSocketClient(URI serverUri) {
+    public FedWebSocketClient(URI serverUri,TaskCallback t) {
         super(serverUri);
+        this.taskCallback=t;
     }
 
     @Override
@@ -48,22 +51,24 @@ public class FedWebSocketClient extends WebSocketClient {
         if (message.equals(Constant.ALL_CLIENT_START)) {
 
             Log.i(TAG, "onMessage: train start");
+            sendMessage(taskCallback,"server command:train start");
             //等待接收全局梯度
             while (!multiRegression.RECEIVED_GLOBAL) ;
             multiRegression.RECEIVED_GLOBAL = false;
             Log.i(TAG, "onMessage: RECEIVED_GLOBAL");
-
+            sendMessage(taskCallback,"server command:receive global model");
             //用全局模型更新本地模型
             try{
+                sendMessage(taskCallback,"server command:training");
                 multiRegression.execute();
             }catch(Exception e){
                 e.printStackTrace();
             }
 
-
             //上传模型
             try {
-                System.out.println("上传模型");
+                Log.i(TAG, "onMessage: 上传模型");
+                sendMessage(taskCallback,"server command:upload model");
                 clientMessage.setMessage(Constant.CLIENT,Constant.CLIENT_UPDATE_WEIGHT,null,multiRegression.getWeight());
                 ByteBuffer byteBuffer = ByteBufferUtil.getByteBuffer(clientMessage);
                 send(byteBuffer);
@@ -74,6 +79,10 @@ public class FedWebSocketClient extends WebSocketClient {
         } else if (message.equals(Constant.ALL_CLIENT_STOP)) {
             //服务器通知结束训练
             Log.i(TAG, "onMessage: train stop ");
+            sendMessage(taskCallback,"server command:train stop");
+        }else if (message.equals("success")){
+            Log.i(TAG, "onMessage: train success");
+            sendMessage(taskCallback,"train success");
         }
 
 
@@ -82,18 +91,14 @@ public class FedWebSocketClient extends WebSocketClient {
 
     @Override
     public void onMessage(ByteBuffer message) {
-
-        Log.i(TAG, "onMessage: reveiving global");
-
-        Log.i(TAG, "onMessage: "+message);
+        Log.i(TAG, "onMessage: receiving global");
+        sendMessage(taskCallback,"receiving global model");
 
         Object object = null;
         try {
-            Log.i(TAG, "onMessage: "+message);
             if(message==null){
                 Log.e(TAG, "onMessage: message==null");
             }else {
-                Log.i(TAG, "onMessage: ByteBufferUtil.getObject(message)");
                 object = ByteBufferUtil.getObject(message);
                 Log.i(TAG, "onMessage: ByteBufferUtil"+object.getClass()+" "+object);
             }
@@ -104,6 +109,7 @@ public class FedWebSocketClient extends WebSocketClient {
 
         Message tempMessage=(Message)object;
         Log.i(TAG, "onMessage: 更新本地模型");
+        sendMessage(taskCallback,"update local model");
 
 
         assert tempMessage != null;
@@ -132,10 +138,22 @@ public class FedWebSocketClient extends WebSocketClient {
     @Override
     public void onClose(int code, String reason, boolean remote) {
         Log.i(TAG, "onClose: " + code + " \n" + reason);
+        sendMessage(taskCallback,"websocket close!\nreason:"+reason);
     }
 
     @Override
     public void onError(Exception ex) {
         ex.printStackTrace();
+        sendMessage(taskCallback,"websocket error!\n"+ex);
+    }
+
+
+    /**
+     * 通过回调函数反向传递消息
+     * @param taskCallback
+     * @param message
+     */
+    public void sendMessage(TaskCallback taskCallback,String message){
+        taskCallback.sendMessage(message);
     }
 }

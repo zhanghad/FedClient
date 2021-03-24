@@ -12,31 +12,36 @@
         android:text="项目列表"
         android:textAlignment="center"
         android:textSize="30dp" />
-    <FrameLayout
-        android:id="@+id/main_Frame"
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="可选项目列表"></TextView>
+<!--    <FrameLayout
+        android:id="@+id/main_Frame"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
         android:layout_weight="1">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="可选项目列表">
-        </TextView>
-    </FrameLayout>
+    </FrameLayout>-->
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"/>-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1" />-->
 
+<!--    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="563dp">
+
+
+    </ScrollView>-->
     <ListView
         android:id="@+id/lv_project"
         android:layout_width="match_parent"
-        android:layout_height="570dp">
-    </ListView>
+        android:layout_height="558dp"></ListView>
 
 
     <RadioGroup

@@ -50,7 +50,7 @@ public class MultiRegression extends MyMultiLayerNetwork {
 
         //监听器
         model.init();
-        model.setListeners(new ScoreIterationListener(10));
+//        model.setListeners(new ScoreIterationListener(1));
 
         Log.i(TAG, "execute: "+model);
 

@@ -7,12 +7,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +17,7 @@ import com.fedclient.constants.UrlConstants;
 import com.fedclient.domain.ClientLog;
 import com.fedclient.manager.ClientManager;
 import com.fedclient.R;
+import com.fedclient.ui.adapter.HistoryAdapter;
 import com.fedclient.util.HttpUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -42,9 +40,11 @@ import okhttp3.Response;
 public class HistoryActivity extends AppCompatActivity{
     private ImageView iv_back;
     public ListView lv_history;
-    public List<ClientLog> list= new ArrayList<ClientLog>();
-    private MyBaseAdapter myBaseAdapter;
+
     private static final String TAG = "HistoryActivity";
+
+    public List<ClientLog> historyList = new ArrayList<ClientLog>();
+    private HistoryAdapter historyAdapter;
 
 
     @Override
@@ -92,7 +92,19 @@ public class HistoryActivity extends AppCompatActivity{
                     String data = response.body().string();
                     Log.i(TAG, "onResponse: "+data);
                     Type userListType = new TypeToken<List<ClientLog>>(){}.getType();
-                    list= new Gson().fromJson(data,userListType);
+                    historyList = new Gson().fromJson(data,userListType);
+
+                    if(historyList==null){
+                        historyList=new ArrayList<ClientLog>();
+                    }
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            historyAdapter = new HistoryAdapter(HistoryActivity.this,historyList,R.layout.view_historylist);
+                            lv_history.setAdapter(historyAdapter);
+                        }
+                    });
                 }
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -105,8 +117,7 @@ public class HistoryActivity extends AppCompatActivity{
         }
 
 
-        myBaseAdapter = new MyBaseAdapter(list);
-        lv_history.setAdapter(myBaseAdapter);
+
 
         /*new Thread(new Runnable() {
             @Override
@@ -126,58 +137,11 @@ public class HistoryActivity extends AppCompatActivity{
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    myBaseAdapter.notifyDataSetChanged();
+                    historyAdapter.notifyDataSetChanged();
                     break;
             }
         }
     };
 
-
-    /**
-     * listview 适配器
-     */
-    private class MyBaseAdapter extends BaseAdapter {
-        List<ClientLog> clientLogs;
-
-        public MyBaseAdapter(List<ClientLog> clientLogs){
-            super();
-            this.clientLogs=clientLogs;
-        }
-
-        @Override
-        public int getCount() {
-            return clientLogs.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return clientLogs.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @SuppressLint("SetTextI18n")
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            ViewHolder viewHolder = new ViewHolder();
-            if (convertView == null) {
-                convertView = getLayoutInflater().inflate(R.layout.list_choose,null);
-                viewHolder.Testname = (TextView) convertView.findViewById(R.id.tvTestname);
-                convertView.setTag(viewHolder);
-            } else {
-                viewHolder = (ViewHolder) convertView.getTag();
-            }
-            viewHolder.Testname.setText("任务id："+clientLogs.get(position).getTpId());
-            return convertView;
-        }
-    }
-
-    final static class ViewHolder {
-        TextView Testname;
-    }
 
 }

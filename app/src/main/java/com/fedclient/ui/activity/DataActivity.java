@@ -74,11 +74,11 @@ public class DataActivity extends AppCompatActivity {
             public void onClick(View view){
                 Toast.makeText(DataActivity.this,"已成功加入！",Toast.LENGTH_LONG).show();
 
-//                WebSocketService webSocketService=new WebSocketService(UrlConstants.WS_TEST);
-//                TaskServiceManager.setWebSocketService(webSocketService);
-                startService(new Intent(DataActivity.this,WebSocketService.class));
-                Intent intent = new Intent (DataActivity.this,HomeActivity.class);
-                startActivity(intent);
+                Intent serviceIntent=new Intent(DataActivity.this,WebSocketService.class);
+                startService(serviceIntent);
+
+                Intent jumpIntent = new Intent (DataActivity.this,TrainStatusActivity.class);
+                startActivity(jumpIntent);
                 finish();
             }
         });

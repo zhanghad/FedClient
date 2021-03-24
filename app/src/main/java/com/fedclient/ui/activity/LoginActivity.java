@@ -113,6 +113,13 @@ public class LoginActivity extends AppCompatActivity {
     private void Login(){
         loginName = CommonUtil.StringHandle(et_username.getText().toString());
         password = CommonUtil.StringHandle(et_password.getText().toString());
+
+        if(loginName.equals("")&&password.equals("")){
+            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         String resMsg = checkDataValid(loginName, password);
         if (!resMsg.equals((""))) {
             showResponse(resMsg);
@@ -152,6 +159,7 @@ public class LoginActivity extends AppCompatActivity {
                     //跳转
                     Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 }else {
                     CommonUtil.makeToast(LoginActivity.this,resMsg);
                 }
