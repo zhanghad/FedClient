@@ -53,11 +53,6 @@
             android:label="Data Activity">
         </activity>
 
-        <activity
-            android:name=".Details_history">
-        </activity>
-
-
 
         <!--websocket服务-->
         <service

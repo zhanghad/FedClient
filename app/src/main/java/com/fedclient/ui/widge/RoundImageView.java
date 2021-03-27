@@ -1,4 +1,4 @@
-package com.fedclient.widge;
+package com.fedclient.ui.widge;
 
 import android.content.Context;
 import android.graphics.Canvas;
