@@ -1,17 +1,26 @@
 package com.fedclient.ui.activity;
 
+import java.io.File;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.Toast;
-
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fedclient.R;
@@ -20,21 +29,18 @@ import com.fedclient.fed.websocket.WebSocketService;
 import com.fedclient.manager.TaskServiceManager;
 
 public class DataActivity extends AppCompatActivity {
-
     Switch s;
     public EditText et;
-
     private RadioButton RB_back;
     private RadioButton RB_join;
-
+    private Button RB_choose;
     private Long tpId;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_data);
+        setContentView(R.layout.data_select);
         initComponents();
         setListeners();
     }
@@ -44,7 +50,6 @@ public class DataActivity extends AppCompatActivity {
         super.onStart();
         Intent intent=getIntent();
         tpId=intent.getLongExtra("tpId",0L);
-
     }
 
     /**
@@ -53,8 +58,8 @@ public class DataActivity extends AppCompatActivity {
     private void initComponents(){
         RB_back = (RadioButton) findViewById (R.id.RB_back);
         RB_join = (RadioButton) findViewById( R.id.RB_join);
+        RB_choose = (Button) findViewById( R.id.file_choose);
     }
-
 
     /**
      * 设置监听器
@@ -83,10 +88,17 @@ public class DataActivity extends AppCompatActivity {
             }
         });
 
+        RB_choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent getContentIntent = FileUtils.createGetContentIntent();
+                Intent intent = Intent.createChooser(getContentIntent, "用aFileChooser选择文件");
+                startActivityForResult(intent, REQUEST_CHOOSER);
+            }
+        });
     }
 
-
-
+    /*
     public void babyname_onClick(View v) {
         EditText name_text=findViewById(R.id.name_text);
         PopupMenu pm=new PopupMenu(this, name_text);
@@ -100,6 +112,7 @@ public class DataActivity extends AppCompatActivity {
         });
         pm.show();
     }
+    */
 
 
 

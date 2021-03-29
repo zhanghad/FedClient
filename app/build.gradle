@@ -38,6 +38,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:30.1.0'
     implementation 'com.android.support:design:30.1.0'
     implementation 'com.android.support:appcompat-v7:30.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 
     // 导航组件
@@ -129,4 +130,5 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
 
+    implementation 'com.android.support:design:30.0.0'
 }

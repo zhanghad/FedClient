@@ -7,16 +7,17 @@
     android:orientation="vertical"
     tools:context=".ui.activity.HomeActivity">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vp_home_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <androidx.support.widget.ViewPager
+        android:id="@+id/mainview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#f1f1f1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.support.widget.ViewPager>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bv_home_navigation"

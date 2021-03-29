@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/renwuguanli"
+        android:title="@string/home"/>
+
+    <item
+        android:id="@+id/home_history"
+        android:icon="@drawable/lishi"
+        android:title="@string/history"/>
+
+    <item
+        android:id="@+id/home_now"
+        android:icon="@drawable/now"
+        android:title="@string/now"/>
+
+    <item
+        android:id="@+id/home_config"
+        android:icon="@drawable/shezhi"
+        android:title="@string/config"/>
+
+    <item
+        android:id="@+id/home_me"
+        android:icon="@drawable/mine"
+        android:title="@string/me"/>
+
+</menu>
