@@ -58,9 +58,6 @@ public class TaskDetailActivity extends AppCompatActivity {
         super.onStart();
         
         Intent intent=getIntent();
-//        Log.d(TAG, "onStart: "+intent);
-//        Log.d(TAG, "onStart: "+intent.getStringExtra("name"));
-//        Log.d(TAG, "onStart: "+tv_td_title+"\n"+tv_td_id+"\n"+tv_td_status+"\n"+tv_td_curclients+"\n"+tv_td_curepoch);
 
         tv_td_title.setText(intent.getStringExtra("name"));
         tv_td_id.setText(intent.getLongExtra("id",0L)+"");
@@ -123,7 +120,7 @@ public class TaskDetailActivity extends AppCompatActivity {
      * 初始化组件及数据
      */
     private void initComponents(){
-        tv_td_title=(TextView)findViewById(R.id.tv_td_title);
+        tv_td_title=(TextView)findViewById(R.id.tv_td_name);
         Log.d(TAG, "initComponents: "+tv_td_title);
         tv_td_id=(TextView)findViewById(R.id.tv_td_id);
         tv_td_status=(TextView)findViewById(R.id.tv_td_status);

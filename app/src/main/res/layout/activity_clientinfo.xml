@@ -170,7 +170,7 @@
         android:layout_height="1dp"
         android:background="@color/grey"/>
 
-    <!--积分-->
+<!--    &lt;!&ndash;积分&ndash;&gt;
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -206,7 +206,7 @@
         android:layout_height="1dp"
         android:background="@color/grey"/>
 
-    <!--昵称-->
+    &lt;!&ndash;昵称&ndash;&gt;
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -236,11 +236,11 @@
             android:textSize="18sp" />
     </LinearLayout>
 
-    <!--分割线-->
+    &lt;!&ndash;分割线&ndash;&gt;
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/grey"/>
+        android:background="@color/grey"/>-->
 
     <!--密码-->
     <LinearLayout
@@ -275,6 +275,111 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <!--手机号-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="手机号"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tv_ci_phone"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:background="@color/transparent"
+            android:text=""
+            android:textColor="@color/gray_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <!--邮箱-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="邮箱"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tv_ci_emile"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:background="@color/transparent"
+            android:text=""
+            android:textColor="@color/gray_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <!--性别-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="性别"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tv_ci_sex"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:background="@color/transparent"
+            android:text=""
+            android:textColor="@color/gray_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+
     <!--分割线-->
     <ImageView
         android:layout_width="match_parent"
@@ -304,6 +409,8 @@
             android:textSize="18sp" />
 
     </LinearLayout>
+
+
 
     <!--
     <LinearLayout

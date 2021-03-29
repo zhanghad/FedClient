@@ -11,20 +11,20 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="2"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_tp_title"
+                android:id="@+id/tv_h_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="标题"
+                android:text="id:"
                 android:textColor="#F00"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tv_tp_content"
+                android:id="@+id/tv_h_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="内容"
@@ -32,11 +32,11 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_tp_date"
+                android:id="@+id/tv_h_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:text="时间"
                 android:textSize="10sp" />
         </LinearLayout>
@@ -45,16 +45,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            >
 
             <Button
-                android:id="@+id/btn_tp_info"
+                android:id="@+id/btn_h_info"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_alignParentRight="true"
+                android:background="@color/grey"
                 android:text="详情"
+                android:textAlignment="center"
                 android:textSize="10sp" />
+
 
         </LinearLayout>
     </LinearLayout>

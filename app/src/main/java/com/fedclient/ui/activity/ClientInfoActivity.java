@@ -31,7 +31,7 @@ import com.fedclient.util.CommonRequest;
 import com.fedclient.util.CommonResponse;
 import com.fedclient.trash.Consts;
 import com.fedclient.util.HttpUtil;
-import com.fedclient.util.SharedPreferencesUtil;
+//import com.fedclient.util.SharedPreferencesUtil;
 import com.fedclient.manager.ClientManager;
 import com.fedclient.util.CommonUtil;
 import com.fedclient.R;
@@ -88,9 +88,9 @@ public class ClientInfoActivity extends Activity {
         HomeActivity activity = (HomeActivity) ActivityManager.getActivity(HomeActivity.class);
         handler = activity.handler;
         tx_account = findViewById(R.id.tx_account);
-        tx_Userscore = findViewById(R.id.tx_Userscore);
+//        tx_Userscore = findViewById(R.id.tx_Userscore);
+//        btn_nickname = findViewById(R.id.btn_nickname);
         tx_Nickname = (TextView)findViewById(R.id.tx_nickname);
-        btn_nickname = findViewById(R.id.btn_nickname);
         btn_password = findViewById(R.id.btn_password);
         btn_exit = findViewById(R.id.btn_exit);
         iv_head= findViewById(R.id.iv_head);
@@ -148,8 +148,8 @@ public class ClientInfoActivity extends Activity {
         btn_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferencesUtil spu = new SharedPreferencesUtil(ClientInfoActivity.this);
-                spu.setParam("isAutoLogin",false);
+//                SharedPreferencesUtil spu = new SharedPreferencesUtil(ClientInfoActivity.this);
+//                spu.setParam("isAutoLogin",false);
                 ActivityManager.finishAll(LoginActivity.class);
                 ActivityManager.clearAcache();
                 ClientManager.clear();
