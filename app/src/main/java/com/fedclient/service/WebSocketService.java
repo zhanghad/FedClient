@@ -1,4 +1,4 @@
-package com.fedclient.fed.websocket;
+package com.fedclient.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 
 import com.fedclient.constants.UrlConstants;
+import com.fedclient.fed.websocket.FedWebSocketClient;
 import com.fedclient.manager.TaskServiceManager;
 import com.fedclient.ui.callback.TaskCallback;
 
@@ -24,7 +25,7 @@ public class WebSocketService extends Service implements TaskCallback {
     private FedWebSocketClient fedWebSocketClient;
     private List<String> messageList = new ArrayList<String>();
 
-    public static final String ACTION_NAME="com.fedclient.fed.websocket.WebSocketService";
+    public static final String ACTION_NAME="com.fedclient.service.WebSocketService";
 
     @Nullable
     @Override

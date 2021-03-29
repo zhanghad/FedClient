@@ -88,8 +88,8 @@ public class ClientInfoActivity extends Activity {
         HomeActivity activity = (HomeActivity) ActivityManager.getActivity(HomeActivity.class);
         handler = activity.handler;
         tx_account = findViewById(R.id.tx_account);
-        tx_Userscore = findViewById(R.id.tx_Userscore);
-        btn_nickname = findViewById(R.id.btn_nickname);
+//        tx_Userscore = findViewById(R.id.tx_Userscore);
+//        btn_nickname = findViewById(R.id.btn_nickname);
         tx_Nickname = (TextView)findViewById(R.id.tx_nickname);
         btn_password = findViewById(R.id.btn_password);
         btn_exit = findViewById(R.id.btn_exit);

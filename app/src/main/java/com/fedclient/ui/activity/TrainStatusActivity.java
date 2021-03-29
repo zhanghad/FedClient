@@ -1,13 +1,10 @@
 package com.fedclient.ui.activity;
 
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.View;
 
 import android.view.Window;
@@ -15,8 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fedclient.R;
-import com.fedclient.fed.websocket.WebSocketService;
-import com.fedclient.manager.TaskServiceManager;
+import com.fedclient.service.WebSocketService;
 
 import androidx.appcompat.app.AppCompatActivity;
 

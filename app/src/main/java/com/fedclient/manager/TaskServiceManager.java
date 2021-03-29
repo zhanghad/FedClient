@@ -1,6 +1,6 @@
 package com.fedclient.manager;
 
-import com.fedclient.fed.websocket.WebSocketService;
+import com.fedclient.service.WebSocketService;
 
 public class TaskServiceManager {
 
