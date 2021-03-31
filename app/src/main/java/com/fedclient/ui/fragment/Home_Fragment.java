@@ -41,11 +41,77 @@ import okhttp3.HttpUrl;
 import okhttp3.Response;
 
 public class Home_Fragment extends Fragment{
+    private static final String TAG = "Home_Fragment";
+
+    public ListView lv_project;
+    private TaskPublishedAdapter list_item;
+    List<TaskPublished> taskPublisheds= new ArrayList<TaskPublished>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
+
+
+        initComponents(view);
         return view;
+    }
+
+
+    private void initComponents(View view){
+//        list.clear();
+        lv_project = (ListView)view.findViewById(R.id.lv_project);
+
+        /**
+         * 从服务端获取数据
+         */
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    HttpUrl url =HttpUrl.parse(UrlConstants.URL_TASK_GET_ALL_TASK).newBuilder()
+                            .build();
+
+                    HttpUtil.sendGet(url.toString(), new Callback() {
+                        @Override
+                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                            String data = response.body().string();
+
+                            Log.i(TAG, "onResponse: "+data);
+                            Type userListType = new TypeToken<List<TaskPublished>>(){}.getType();
+                            taskPublisheds= new Gson().fromJson(data,userListType);
+
+                            if (taskPublisheds.isEmpty()){
+                                Log.e(TAG, "onResponse: "+"taskPublisheds isEmpty");
+                                taskPublisheds= new ArrayList<TaskPublished>();
+                            }
+
+                            Log.d(TAG, "onResponse: "+taskPublisheds.toString());
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.d(TAG, "onCreate: "+taskPublisheds.toString());
+                                    //getApplicationContext()
+                                    list_item = new TaskPublishedAdapter(getActivity(),taskPublisheds,R.layout.view_tplist);
+                                    lv_project.setAdapter(list_item);
+                                }
+                            });
+
+                        }
+                        @Override
+                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                            Log.e(TAG, "onFailure: ", e);
+                        }
+                    });
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 
 

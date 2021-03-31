@@ -53,7 +53,6 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     private Config_Fragment fg_config;
     private Mine_Fragment fg_mine;
 
-    private FrameLayout frameLayout;
 
     private RelativeLayout home_layout;
     private RelativeLayout history_layout;
@@ -77,9 +76,11 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 
     private FragmentManager fragmentManager;
 
+/*
     public ListView lv_project;
     private TaskPublishedAdapter list_item;
     List<TaskPublished> taskPublisheds= new ArrayList<TaskPublished>();
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,19 +89,20 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         fragmentManager = getSupportFragmentManager();
         initView(); // 初始化界面控件
         setChioceItem(0); // 初始化页面加载时显示第一个选项卡
-        initComponents();
+
+        //initComponents();
     }
 
     /**
      * 初始化组件及数据
      */
-    private void initComponents(){
+    /*private void initComponents(){
 //        list.clear();
         lv_project = (ListView)findViewById(R.id.lv_project);
 
-        /**
+        *//**
          * 从服务端获取数据
-         */
+         *//*
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -148,7 +150,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             }
         }).start();
 
-    }
+    }*/
 
     private void initView() {
 // 初始化页面标题栏
