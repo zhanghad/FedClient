@@ -26,6 +26,4 @@ public class Trainstatus_Fragment extends Fragment {
     }
 
 
-
-
 }

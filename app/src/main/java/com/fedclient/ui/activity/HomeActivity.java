@@ -269,13 +269,9 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                 if (fg_config == null) {
                     fg_config = new Config_Fragment();
                     fragmentTransaction.add(R.id.content, fg_config);
-                    Intent intent = new Intent(HomeActivity.this, ConfigActivity.class);//在Fragment中实现开启新的Activity
-                    startActivity(intent);
                 } else {
                     fragmentTransaction.show(fg_config);
                 }
-                //Intent intent3= new Intent(HomeActivity.this,ConfigActivity.class);
-                //startActivity(intent3);
                 break;
             case 4:
 // fourthImage.setImageResource(R.drawable.XXXX);
@@ -288,8 +284,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                 } else {
                     fragmentTransaction.show(fg_mine);
                 }
-                //Intent intent4= new Intent(HomeActivity.this,ClientInfoActivity.class);
-                //startActivity(intent4);
+
                 break;
         }
         fragmentTransaction.commit(); // 提交

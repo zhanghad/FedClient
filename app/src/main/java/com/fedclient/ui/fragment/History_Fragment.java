@@ -41,10 +41,85 @@ import okhttp3.HttpUrl;
 import okhttp3.Response;
 
 public class History_Fragment extends Fragment {
+    public ListView lv_history;
+
+    private static final String TAG = "HistoryActivity";
+
+    public List<ClientLog> historyList = new ArrayList<ClientLog>();
+    private HistoryAdapter historyAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history,container,false);
+        initComponents(view);
+
         return view;
     }
+    
+    /**
+     * 初始化组件及数据
+     */
+    private void initComponents(View view){
+
+        /**
+         * 从服务端获取数据
+         */
+        try {
+            HttpUrl url =HttpUrl.parse(UrlConstants.URL_HISTORY_GET).newBuilder()
+                    .addQueryParameter("loginName", ClientManager.getCurrentClient().getLoginName())
+                    .build();
+            HttpUtil.sendGet(url.toString(), new Callback() {
+                @Override
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    String data = response.body().string();
+                    Log.i(TAG, "onResponse: "+data);
+                    Type userListType = new TypeToken<List<ClientLog>>(){}.getType();
+                    historyList = new Gson().fromJson(data,userListType);
+
+                    if(historyList==null){
+                        historyList=new ArrayList<ClientLog>();
+                    }
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            historyAdapter = new HistoryAdapter(getActivity(),historyList,R.layout.view_historylist);
+                            lv_history.setAdapter(historyAdapter);
+                        }
+                    });
+                }
+                @Override
+                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    Log.e(TAG, "onFailure: ", e);
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }).start();*/
+
+    }
+
+    @SuppressLint("HandlerLeak")
+    public Handler handler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    historyAdapter.notifyDataSetChanged();
+                    break;
+            }
+        }
+    };
+
+
 
 }
