@@ -38,8 +38,7 @@ public class DeviceManager {
 
     public static void setPowered(boolean flag){
 
-        
-        myDevice.setPowered(flag);
+        //myDevice.setPowered(flag);
     }
 
     public static void setBatteryCapacity(Double p){

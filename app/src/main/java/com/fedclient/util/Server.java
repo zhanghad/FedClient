@@ -112,6 +112,64 @@ public class Server {
         return resCode;
     }
 
+    public String setLoginName(String account) {
+        CommonRequest request = new CommonRequest();
+        request.setRequestCode(Consts.REQUESTCODE_LOGINNAME);
+        request.addRequestParam("loginName", ClientManager.getCurrentClient().getClientName());
+        try {
+            infoPost(Consts.URL_SetInfo,request.getJsonStr());
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return resCode;
+
+    }
+
+    public String setPhonenumber(String phone) {
+        CommonRequest request = new CommonRequest();
+        request.setRequestCode(Consts.REQUESTCODE_PHONE);
+        request.addRequestParam("loginName", ClientManager.getCurrentClient().getClientName());
+        request.addRequestParam("phone",phone);
+        try {
+            infoPost(Consts.URL_SetInfo,request.getJsonStr());
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return resCode;
+    }
+
+    public String setSex(String sex) {
+        CommonRequest request = new CommonRequest();
+        request.setRequestCode(Consts.REQUESTCODE_PHONE);
+        request.addRequestParam("loginName", ClientManager.getCurrentClient().getClientName());
+        request.addRequestParam("sex",sex);
+        try {
+            infoPost(Consts.URL_SetInfo,request.getJsonStr());
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return resCode;
+    }
+
+    public String setEmail(String email) {
+        CommonRequest request = new CommonRequest();
+        request.setRequestCode(Consts.REQUESTCODE_PHONE);
+        request.addRequestParam("loginName", ClientManager.getCurrentClient().getClientName());
+        request.addRequestParam("email",email);
+        try {
+            infoPost(Consts.URL_SetInfo,request.getJsonStr());
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return resCode;
+    }
+
+
+
     /*
     public ArrayList<Record> getRecords(){
         CommonRequest request = new CommonRequest();

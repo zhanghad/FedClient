@@ -23,10 +23,6 @@ import android.widget.Toast;
  */
 public class ConfigActivity extends AppCompatActivity {
 
-    private RadioButton RB_home;
-    private RadioButton RB_history;
-    private RadioButton RB_now;
-    private RadioButton RB_mine;
 
     Switch s;
     public EditText et;
@@ -46,10 +42,6 @@ public class ConfigActivity extends AppCompatActivity {
      */
     private void initComponents(){
 
-        RB_home = (RadioButton) findViewById (R.id.RB_home);
-        RB_history = (RadioButton) findViewById (R.id.RB_history);
-        RB_now = (RadioButton) findViewById (R.id.RB_now);
-        RB_mine = (RadioButton) findViewById (R.id.RB_mine);
         s = findViewById(R.id.kaiguan);
         TextView textView1 = (TextView) findViewById(R.id.RELEASE);
         textView1.setText(android.os.Build.VERSION.RELEASE );
@@ -73,42 +65,6 @@ public class ConfigActivity extends AppCompatActivity {
      * 设置监听器
      */
     private void setListeners(){
-        RB_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(ConfigActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        RB_now.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(ConfigActivity.this, TrainStatusActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        RB_history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(ConfigActivity.this, HistoryActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        RB_mine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(ConfigActivity.this, ClientInfoActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -120,8 +76,6 @@ public class ConfigActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     public void babyname_onClick(View v) {
         EditText name_text=findViewById(R.id.name_text);

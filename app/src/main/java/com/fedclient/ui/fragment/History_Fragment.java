@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -22,6 +23,7 @@ import com.fedclient.domain.ClientLog;
 import com.fedclient.manager.ClientManager;
 import com.fedclient.ui.activity.HistoryActivity;
 import com.fedclient.ui.activity.HomeActivity;
+import com.fedclient.ui.adapter.HistoryAdapter;
 import com.fedclient.util.HttpUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -39,6 +41,10 @@ import okhttp3.HttpUrl;
 import okhttp3.Response;
 
 public class History_Fragment extends Fragment {
-
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_history,container,false);
+        return view;
+    }
 
 }

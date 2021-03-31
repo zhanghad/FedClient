@@ -26,6 +26,8 @@ public class Consts {
     public static String REQUESTCODE_NICKNAME = "1";
     public static String REQUESTCODE_RECORD ="2";
     public static String REQUESTCODE_USERCORE = "3";
+    public static String REQUESTCODE_PHONE = "4";
+    public static String REQUESTCODE_LOGINNAME = "5";
 
     // 代码对应信息
     public static String ERRORMSG_NULL = "不能为空";

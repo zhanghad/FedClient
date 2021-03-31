@@ -13,6 +13,8 @@
     <string name="Username">用户名</string>
     <string name="Userscore">积分</string>
     <string name="Nickname">昵称</string>
+    <string name="Account">用户名</string>
+    <string name="Phone">手机号</string>
     <string name="modify_hint">修改</string>
     <string name="Password">密码</string>
     <string name="Back">返回</string>
@@ -33,9 +35,10 @@
     <string name="confirm">确认</string>
     <string name="home">任务管理</string>
     <string name="history">历史记录</string>
-    <string name="now">当前状态</string>
     <string name="config">设置</string>
     <string name="me">我的</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Sex">性别</string>
+    <string name="Email">用户邮箱</string>
 </resources>

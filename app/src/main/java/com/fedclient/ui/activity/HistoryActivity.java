@@ -116,9 +116,6 @@ public class HistoryActivity extends AppCompatActivity{
             e.printStackTrace();
         }
 
-
-
-
         /*new Thread(new Runnable() {
             @Override
             public void run() {
@@ -126,9 +123,7 @@ public class HistoryActivity extends AppCompatActivity{
             }
         }).start();*/
 
-
     }
-
 
     @SuppressLint("HandlerLeak")
     public Handler handler = new Handler() {
