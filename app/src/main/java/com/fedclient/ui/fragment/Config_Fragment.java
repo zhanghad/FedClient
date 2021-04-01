@@ -46,6 +46,7 @@ public class Config_Fragment extends Fragment {
         return view;
     }
 
+
     /**
      * 初始化组件及数据
      */
