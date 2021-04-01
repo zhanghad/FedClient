@@ -7,9 +7,12 @@ import android.widget.Toast;
 import com.fedclient.manager.ClientManager;
 import com.fedclient.trash.Consts;
 
+import org.datavec.api.records.impl.Record;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Response;
@@ -169,8 +172,6 @@ public class Server {
     }
 
 
-
-    /*
     public ArrayList<Record> getRecords(){
         CommonRequest request = new CommonRequest();
         request.setRequestCode(Consts.REQUESTCODE_RECORD);
@@ -183,17 +184,15 @@ public class Server {
         }
         ArrayList<Record> recordList = new ArrayList<>();
         for(HashMap<String,String> dataMap:dataList){
-            Record record = new Record();
-            record.setUser(ClientManager.getCurrentClient());
+            //Record record = new Record();
+           // record.setUser(ClientManager.getCurrentClient());
 
-            record.save();// 同时存入本地数据库
-            recordList.add(record);
+            //record.save();// 同时存入本地数据库
+           // recordList.add(record);
         }
         dataList.clear();
         return recordList;
     }
-
-     */
 
 
 }

@@ -14,8 +14,6 @@ import com.fedclient.R;
 import com.fedclient.ui.activity.ClientInfoActivity;
 
 public class Mine_Fragment extends Fragment {
-    private Button btn_takephoto;//拍照
-    private Button btn_fromalbum;//相册
     private Button btn_Edit;
 
     @Nullable

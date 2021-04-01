@@ -1,74 +1,92 @@
 package com.fedclient.ui.fragment;
 
+import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
+import android.text.format.Formatter;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.PopupMenu;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.fedclient.R;
-import com.fedclient.ui.activity.ConfigActivity;
+import com.fedclient.domain.Client;
+import com.fedclient.domain.ClientDevice;
+import com.fedclient.manager.ClientManager;
+import com.fedclient.manager.DeviceManager;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.text.BreakIterator;
+
 
 public class Config_Fragment extends Fragment {
-    Switch s;
-    public EditText et;
+    DeviceManager deviceManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_config,container,false);
-        initComponents(view);
-        setListeners();
+        View view = inflater.inflate(R.layout.fragment_config, container, false);
+
+        try {
+            initComponents(view);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return view;
     }
 
     /**
      * 初始化组件及数据
      */
-    private void initComponents(View view){
+    private void initComponents(View view) throws IOException {
+        ClientDevice clientDevice=DeviceManager.getDeviceInstance();
 
-        s = view.findViewById(R.id.kaiguan);
-        TextView textView1 = (TextView) view.findViewById(R.id.RELEASE);
-        textView1.setText(android.os.Build.VERSION.RELEASE );
-        TextView product = (TextView) view.findViewById(R.id.product);
-        product.setText(android.os.Build.PRODUCT);
-        TextView cpu_abi = (TextView) view.findViewById(R.id.cpu_abi);
-        cpu_abi.setText(android.os.Build.CPU_ABI);
-        TextView tags = (TextView) view.findViewById(R.id.tags );
-        tags.setText(android.os.Build.TAGS );
-        TextView sdk = (TextView) view.findViewById(R.id.sdk );
-        sdk.setText(android.os.Build.VERSION.SDK);
-        TextView device = (TextView) view.findViewById(R.id.device);
-        device.setText(android.os.Build.DEVICE);
-        TextView maker = (TextView) view.findViewById(R.id.maker);
-        maker.setText(android.os.Build.MANUFACTURER);
-        TextView hardware = (TextView) view.findViewById(R.id.hardware);
-        hardware.setText(android.os.Build.MANUFACTURER);
+        TextView tv_deviceCode = (TextView) view.findViewById(R.id.deviceCode);
+        String DeviceCode = String.valueOf(clientDevice.getDeviceCode());
+        tv_deviceCode.setText(DeviceCode);
+
+        TextView tv_clientId = (TextView) view.findViewById(R.id.clientId);
+        String clientid = String.valueOf(clientDevice.getClientId());
+        tv_clientId.setText(clientid);
+
+        TextView tv_androidVersion = (TextView) view.findViewById(R.id.androidVersion);
+        tv_androidVersion.setText(clientDevice.getAndroidVersion());
+
+        TextView tv_os = (TextView) view.findViewById(R.id.Os);
+        tv_os.setText(clientDevice.getOs());
+
+        TextView tv_powered = (TextView) view.findViewById(R.id.powered);
+        tv_powered.setText(clientDevice.getPowered());
+
+        TextView tv_batteryCapacity = (TextView) view.findViewById(R.id.batteryCapacity);
+        String batterycapacity = String.valueOf(clientDevice.getBatteryCapacity());
+        tv_batteryCapacity.setText(batterycapacity);
+
+        TextView tv_proc = (TextView) view.findViewById(R.id.proc);
+        tv_proc.setText(clientDevice.getProc());
+
+        TextView tv_storage = (TextView) view.findViewById(R.id.storage);
+        String Storage = String.valueOf(clientDevice.getStorage());
+        tv_storage.setText(Storage);
+
+        TextView tv_ramCapacity = (TextView) view.findViewById(R.id.ramCapacity);
+        String ramCapacity = String.valueOf(clientDevice.getRamCapacity());
+        tv_ramCapacity.setText(ramCapacity);
+
+        TextView tv_deviceType = (TextView) view.findViewById(R.id.deviceType);
+        tv_deviceType.setText(clientDevice.getDeviceType());
+
     }
-
-    /**
-     * 设置监听器
-     */
-    private void setListeners(){
-        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (s.isChecked()){
-                    Toast.makeText(getActivity(),"开启",Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(getActivity(),"关闭",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
-
-
 
 }

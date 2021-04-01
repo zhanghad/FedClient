@@ -60,10 +60,6 @@ public class ClientDevice extends BaseEntity
         this.deviceId = deviceId;
     }
 
-    public Long getDeviceId() 
-    {
-        return deviceId;
-    }
     public void setClientId(Long clientId) 
     {
         this.clientId = clientId;
@@ -158,7 +154,6 @@ public class ClientDevice extends BaseEntity
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("deviceId", getDeviceId())
             .append("clientId", getClientId())
             .append("deviceCode",getDeviceCode())
             .append("deviceType", getDeviceType())

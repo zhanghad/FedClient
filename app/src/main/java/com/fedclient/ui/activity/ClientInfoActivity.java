@@ -23,6 +23,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.security.PrivateKey;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Response;
@@ -36,7 +37,10 @@ import com.fedclient.util.HttpUtil;
 import com.fedclient.manager.ClientManager;
 import com.fedclient.util.CommonUtil;
 import com.fedclient.R;
+
+import org.datavec.api.records.impl.Record;
 import org.deeplearning4j.nn.workspace.LayerWorkspaceMgr;
+import org.greenrobot.greendao.database.Database;
 
 import com.fedclient.util.PhotoUtil;
 import com.fedclient.util.ACache;
@@ -320,9 +324,10 @@ public class ClientInfoActivity extends Activity {
             user.getRecordList().addAll(recordList);
             //user.save();
         }
+
          */
 
-        /*
+
         // 初始化昵称
         String nickname = user.getClientName();
         if(nickname != null || !(nickname = server.getNickname()).equals("null")){
@@ -333,11 +338,11 @@ public class ClientInfoActivity extends Activity {
             nickname = "Nickname";
         }
         tx_Nickname.setText(nickname);
-        */
 
+
+        /*
 
         //初始化积分
-        /*
         String userscore = user.getUserscore();
         if(userscore != null || !(userscore = server.getUserscore()).equals("null")){
             Log.e("INIT",userscore);
@@ -347,6 +352,8 @@ public class ClientInfoActivity extends Activity {
             userscore = "Userscore";
         }
         tx_Userscore.setText(userscore);
+
+
          */
 
 

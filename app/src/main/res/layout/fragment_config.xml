@@ -42,30 +42,6 @@
     </LinearLayout>
     !-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-        <TextView
-            android:id="@+id/text4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:padding="10dp"
-            android:text="允许非网络下使用："
-            android:textSize="16sp"
-            />
-
-        <Switch
-            android:id="@+id/kaiguan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:thumb="@drawable/thumb"
-            android:track="@drawable/track"/>
-
-    </LinearLayout>
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
@@ -91,91 +67,110 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RELEASE" />
+                android:text="设备唯一编码" />
             <TextView
-                android:id="@+id/RELEASE"
+                android:id="@+id/deviceCode"
                 style="@style/Item.Edit"
                 android:hint="simoperator"
-                android:inputType="number" />
-        </RelativeLayout>
-        <RelativeLayout style="@style/Item.Layout">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="产品" />
-            <TextView
-                android:id="@+id/product"
-                style="@style/Item.Edit"
-                android:hint="simoperator"
-                android:inputType="number" />
-        </RelativeLayout>
-        <RelativeLayout style="@style/Item.Layout">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="CPU_ABI" />
-            <TextView
-                android:id="@+id/cpu_abi"
-                style="@style/Item.Edit"
-                android:hint="simoperator"
-                android:inputType="number" />
-        </RelativeLayout>
-        <RelativeLayout style="@style/Item.Layout">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="标签" />
-            <TextView
-                android:id="@+id/tags"
-                style="@style/Item.Edit"
-                android:hint="simoperator"
-                android:inputType="number" />
-        </RelativeLayout>
-        <RelativeLayout style="@style/Item.Layout">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SDK" />
-            <TextView
-                android:id="@+id/sdk"
-                style="@style/Item.Edit"
-                android:hint="simoperator"
-                android:inputType="number" />
-        </RelativeLayout>
-        <RelativeLayout style="@style/Item.Layout">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="驱动" />
-            <TextView
-                android:id="@+id/device"
-                style="@style/Item.Edit"
-                android:hint="simoperator"
-                android:inputType="number" />
-        </RelativeLayout>
-        <RelativeLayout style="@style/Item.Layout">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="制造商" />
-            <TextView
-                android:id="@+id/maker"
-                style="@style/Item.Edit"
-                android:hint="simoperator"
-                android:inputType="number" />
-        </RelativeLayout>
-        <RelativeLayout style="@style/Item.Layout">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="硬件" />
-            <TextView
-                android:id="@+id/hardware"
-                style="@style/Item.Edit"
-                android:hint="simoperator"
-                android:inputType="number" />
+                />
         </RelativeLayout>
 
+        <RelativeLayout style="@style/Item.Layout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="用户ID" />
+
+            <TextView
+                android:id="@+id/clientId"
+                style="@style/Item.Edit"
+                android:hint="simoperator" />
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/Item.Layout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="安卓版本" />
+
+            <TextView
+                android:id="@+id/androidVersion"
+                style="@style/Item.Edit"
+                android:hint="simoperator"/>
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/Item.Layout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="电池电量" />
+            <TextView
+                android:id="@+id/batteryCapacity"
+                style="@style/Item.Edit"
+                android:hint="simoperator"/>
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/Item.Layout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="操作系统" />
+            <TextView
+                android:id="@+id/Os"
+                style="@style/Item.Edit"
+                android:hint="simoperator"/>
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/Item.Layout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="充电（是/否）" />
+            <TextView
+                android:id="@+id/powered"
+                style="@style/Item.Edit"
+                android:hint="simoperator"/>
+        </RelativeLayout>
+        <RelativeLayout style="@style/Item.Layout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="处理器型号" />
+            <TextView
+                android:id="@+id/proc"
+                style="@style/Item.Edit"
+                android:hint="simoperator"/>
+        </RelativeLayout>
+        <RelativeLayout style="@style/Item.Layout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="存储能力" />
+            <TextView
+                android:id="@+id/storage"
+                style="@style/Item.Edit"
+                android:hint="simoperator"/>
+        </RelativeLayout>
+        <RelativeLayout style="@style/Item.Layout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RAM" />
+            <TextView
+                android:id="@+id/ramCapacity"
+                style="@style/Item.Edit"
+                android:hint="simoperator"/>
+        </RelativeLayout>
+        <RelativeLayout style="@style/Item.Layout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="设备型号" />
+            <TextView
+                android:id="@+id/deviceType"
+                style="@style/Item.Edit"
+                android:hint="simoperator" />
+        </RelativeLayout>
 
     </LinearLayout>
 

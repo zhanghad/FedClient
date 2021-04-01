@@ -30,8 +30,6 @@ public class DeviceManager {
     private static ClientDevice myDevice;
     private static Context mcontext;
 
-
-
     public static void setMcontext(Context context){
         mcontext=context;
     }
@@ -44,8 +42,6 @@ public class DeviceManager {
     public static void setBatteryCapacity(Double p){
         myDevice.setBatteryCapacity(p);
     }
-
-
 
     public static ClientDevice getDeviceInstance() throws IOException {
         if(myDevice==null){
@@ -73,7 +69,7 @@ public class DeviceManager {
     }
 
 
-    private static String deviceCode(Context context){
+    public static String deviceCode(Context context){
         String uniqueID;
         SharedPreferences deviceID = context.getSharedPreferences("device",MODE_PRIVATE);
         String temp=deviceID.getString("deviceID",null);
@@ -156,4 +152,5 @@ public class DeviceManager {
     private static String powered(){
         return "0";
     }
+
 }

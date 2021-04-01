@@ -31,7 +31,7 @@ public class ConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_config);
+        setContentView(R.layout.fragment_config);
         initComponents();
         setListeners();
         }
@@ -42,6 +42,7 @@ public class ConfigActivity extends AppCompatActivity {
      */
     private void initComponents(){
 
+        /*
         s = findViewById(R.id.kaiguan);
         TextView textView1 = (TextView) findViewById(R.id.RELEASE);
         textView1.setText(android.os.Build.VERSION.RELEASE );
@@ -59,6 +60,8 @@ public class ConfigActivity extends AppCompatActivity {
         maker.setText(android.os.Build.MANUFACTURER);
         TextView hardware = (TextView) findViewById(R.id.hardware);
         hardware.setText(android.os.Build.MANUFACTURER);
+
+         */
     }
 
     /**
