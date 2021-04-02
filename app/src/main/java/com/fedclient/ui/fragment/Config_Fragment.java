@@ -1,34 +1,17 @@
 package com.fedclient.ui.fragment;
 
-import android.annotation.SuppressLint;
-import android.app.ActivityManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.BatteryManager;
-import android.os.Build;
+
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
-import android.text.format.Formatter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.fragment.app.Fragment;
-
 import com.fedclient.R;
-import com.fedclient.domain.Client;
 import com.fedclient.domain.ClientDevice;
-import com.fedclient.manager.ClientManager;
 import com.fedclient.manager.DeviceManager;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.text.BreakIterator;
+
 
 
 public class Config_Fragment extends Fragment {
