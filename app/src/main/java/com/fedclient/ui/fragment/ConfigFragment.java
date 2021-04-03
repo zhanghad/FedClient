@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 
-public class Config_Fragment extends Fragment {
+public class ConfigFragment extends Fragment {
     DeviceManager deviceManager;
 
     @Override

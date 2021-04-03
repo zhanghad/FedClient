@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.fedclient.R;
 
-public class Trainstatus_Fragment extends Fragment {
+public class TrainstatusFragment extends Fragment {
     private TextView tv_trainstatus;
     private TextView tv_totalstatus;
 

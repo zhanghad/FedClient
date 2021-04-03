@@ -1,51 +1,31 @@
 package com.fedclient.ui.activity;
 
-import java.io.File;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.FileUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.fedclient.R;
-import com.fedclient.constants.UrlConstants;
-import com.fedclient.manager.TaskServiceManager;
 import com.fedclient.service.WebSocketService;
 
 public class DataActivity extends AppCompatActivity {
@@ -90,7 +70,7 @@ public class DataActivity extends AppCompatActivity {
         RB_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(DataActivity.this,HomeActivity.class);
+                Intent intent=new Intent(DataActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -104,7 +84,7 @@ public class DataActivity extends AppCompatActivity {
 //                WebSocketService webSocketService=new WebSocketService(UrlConstants.WS_TEST);
 //                TaskServiceManager.setWebSocketService(webSocketService);
                 startService(new Intent(DataActivity.this, WebSocketService.class));
-                Intent intent = new Intent (DataActivity.this,HomeActivity.class);
+                Intent intent = new Intent (DataActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

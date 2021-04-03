@@ -1,7 +1,6 @@
 package com.fedclient.ui.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,11 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -21,8 +16,6 @@ import com.fedclient.R;
 import com.fedclient.constants.UrlConstants;
 import com.fedclient.domain.ClientLog;
 import com.fedclient.manager.ClientManager;
-import com.fedclient.ui.activity.HistoryActivity;
-import com.fedclient.ui.activity.HomeActivity;
 import com.fedclient.ui.adapter.HistoryAdapter;
 import com.fedclient.util.HttpUtil;
 import com.google.gson.Gson;
@@ -40,7 +33,7 @@ import okhttp3.Callback;
 import okhttp3.HttpUrl;
 import okhttp3.Response;
 
-public class History_Fragment extends Fragment {
+public class HistoryFragment extends Fragment {
     public ListView lv_history;
 
     private static final String TAG = "HistoryActivity";
@@ -60,6 +53,7 @@ public class History_Fragment extends Fragment {
      * 初始化组件及数据
      */
     private void initComponents(View view){
+        lv_history=view.findViewById(R.id.lv_history);
 
         /**
          * 从服务端获取数据
@@ -98,12 +92,6 @@ public class History_Fragment extends Fragment {
             e.printStackTrace();
         }
 
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        }).start();*/
 
     }
 

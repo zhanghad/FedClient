@@ -4,13 +4,13 @@
     android:layout_height="56dp"
     android:background="@color/color_blue_title"
     android:orientation="horizontal">
-    <ImageView
+<!--    <ImageView
         android:id="@+id/title_imv"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:src="@android:drawable/ic_menu_more" />
+        android:src="@android:drawable/ic_menu_more" />-->
     <TextView
         android:id="@+id/title_text_tv"
         android:layout_width="wrap_content"

@@ -2,11 +2,8 @@ package com.fedclient.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,43 +12,25 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
-import com.fedclient.constants.UrlConstants;
-import com.fedclient.domain.TaskPublished;
 import com.fedclient.R;
-import com.fedclient.ui.adapter.TaskPublishedAdapter;
-import com.fedclient.ui.fragment.Config_Fragment;
-import com.fedclient.ui.fragment.History_Fragment;
-import com.fedclient.ui.fragment.Home_Fragment;
-import com.fedclient.ui.fragment.Mine_Fragment;
-import com.fedclient.ui.fragment.Trainstatus_Fragment;
-import com.fedclient.util.HttpUtil;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.HttpUrl;
-import okhttp3.Response;
+import com.fedclient.ui.fragment.ConfigFragment;
+import com.fedclient.ui.fragment.HistoryFragment;
+import com.fedclient.ui.fragment.HomeFragment;
+import com.fedclient.ui.fragment.ClientInfoFragment;
+import com.fedclient.ui.fragment.TrainstatusFragment;
 
 /**
  * 主页,用于展示已发布任务的信息
  */
-public class HomeActivity extends FragmentActivity implements View.OnClickListener{
+public class MainActivity extends FragmentActivity implements View.OnClickListener{
     private static final String TAG = "HomeActivity";
     private ImageView titleLeftImv;
     private TextView titleTv;
-    private Home_Fragment fg_home;
-    private History_Fragment fg_history;
-    private Trainstatus_Fragment fg_trainstatus;
-    private Config_Fragment fg_config;
-    private Mine_Fragment fg_mine;
+    private HomeFragment fg_home;
+    private HistoryFragment fg_history;
+    private TrainstatusFragment fg_trainstatus;
+    private ConfigFragment fg_config;
+    private ClientInfoFragment fg_mine;
 
 
     private RelativeLayout home_layout;
@@ -76,94 +55,32 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 
     private FragmentManager fragmentManager;
 
-/*
-    public ListView lv_project;
-    private TaskPublishedAdapter list_item;
-    List<TaskPublished> taskPublisheds= new ArrayList<TaskPublished>();
-*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_activity);
+        setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
         initView(); // 初始化界面控件
         setChioceItem(0); // 初始化页面加载时显示第一个选项卡
 
-        //initComponents();
     }
 
-    /**
-     * 初始化组件及数据
-     */
-    /*private void initComponents(){
-//        list.clear();
-        lv_project = (ListView)findViewById(R.id.lv_project);
-
-        *//**
-         * 从服务端获取数据
-         *//*
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-
-                    HttpUrl url =HttpUrl.parse(UrlConstants.URL_TASK_GET_ALL_TASK).newBuilder()
-                            .build();
-
-                    HttpUtil.sendGet(url.toString(), new Callback() {
-                        @Override
-                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                            String data = response.body().string();
-
-                            Log.i(TAG, "onResponse: "+data);
-                            Type userListType = new TypeToken<List<TaskPublished>>(){}.getType();
-                            taskPublisheds= new Gson().fromJson(data,userListType);
-
-                            if (taskPublisheds.isEmpty()){
-                                Log.e(TAG, "onResponse: "+"taskPublisheds isEmpty");
-                                taskPublisheds= new ArrayList<TaskPublished>();
-                            }
-
-                            Log.d(TAG, "onResponse: "+taskPublisheds.toString());
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Log.d(TAG, "onCreate: "+taskPublisheds.toString());
-                                    //getApplicationContext()
-                                    list_item = new TaskPublishedAdapter(HomeActivity.this,taskPublisheds,R.layout.view_tplist);
-                                    lv_project.setAdapter(list_item);
-                                }
-                            });
-
-                        }
-                        @Override
-                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                            Log.e(TAG, "onFailure: ", e);
-                        }
-                    });
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-    }*/
 
     private void initView() {
-// 初始化页面标题栏
-        titleLeftImv = (ImageView) findViewById(R.id.title_imv);
+        // 初始化页面标题栏
+
+/*        titleLeftImv = (ImageView) findViewById(R.id.title_imv);
         titleLeftImv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
-        });
+        });*/
+
         titleTv = (TextView) findViewById(R.id.title_text_tv);
         titleTv.setText("首 页");
-// 初始化底部导航栏的控件
+        // 初始化底部导航栏的控件
         im_home = (ImageView) findViewById(R.id.im_home);
         im_history = (ImageView) findViewById(R.id.im_history);
         im_trainstatus = (ImageView) findViewById(R.id.im_trainstatus);
@@ -182,11 +99,11 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         config_layout = (RelativeLayout) findViewById(R.id.home_config);
         mine_layout = (RelativeLayout) findViewById(R.id.home_mine);
 
-        home_layout.setOnClickListener(HomeActivity.this);
-        history_layout.setOnClickListener(HomeActivity.this);
-        trainstatus_layout.setOnClickListener(HomeActivity.this);
-        config_layout.setOnClickListener(HomeActivity.this);
-        mine_layout.setOnClickListener(HomeActivity.this);
+        home_layout.setOnClickListener(MainActivity.this);
+        history_layout.setOnClickListener(MainActivity.this);
+        trainstatus_layout.setOnClickListener(MainActivity.this);
+        config_layout.setOnClickListener(MainActivity.this);
+        mine_layout.setOnClickListener(MainActivity.this);
     }
 
     @Override
@@ -219,7 +136,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
      */
     private void setChioceItem(int index) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        clearChioce(); // 清空, 重置选项, 隐藏所有Fragment
+        clearChoice(); // 清空, 重置选项, 隐藏所有Fragment
         hideFragments(fragmentTransaction);
         switch (index) {
             case 0:
@@ -227,59 +144,53 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                 home_layout.setBackgroundColor(gray);
                 titleTv.setText("主 页");
                 if (fg_home == null) {
-                    fg_home = new Home_Fragment();
+                    fg_home = new HomeFragment();
                     fragmentTransaction.add(R.id.content, fg_home);
                 } else {
                     fragmentTransaction.show(fg_home);
                 }
-                //Intent intent= new Intent(HomeActivity.this,HomeActivity.class);
-                //startActivity(intent);
                 break;
             case 1:
                 tx_history.setTextColor(dark);
                 history_layout.setBackgroundColor(gray);
                 titleTv.setText("历史记录");
                 if (fg_history == null) {
-                    fg_history = new History_Fragment();
+                    fg_history = new HistoryFragment();
                     fragmentTransaction.add(R.id.content, fg_history);
                 } else {
                     fragmentTransaction.show(fg_history);
                 }
-                //Intent intent1= new Intent(HomeActivity.this,HistoryActivity.class);
-                //startActivity(intent1);
+
                 break;
             case 2:
                 tx_trainstatus.setTextColor(dark);
                 trainstatus_layout.setBackgroundColor(gray);
                 titleTv.setText("当前进度");
                 if (fg_trainstatus == null) {
-                    fg_trainstatus = new Trainstatus_Fragment();
+                    fg_trainstatus = new TrainstatusFragment();
                     fragmentTransaction.add(R.id.content, fg_trainstatus);
                 } else {
                     fragmentTransaction.show(fg_trainstatus);
                 }
-                //Intent intent2= new Intent(HomeActivity.this,TrainStatusActivity.class);
-                //startActivity(intent2);
+
                 break;
             case 3:
-// fourthImage.setImageResource(R.drawable.XXXX);
                 tx_config.setTextColor(dark);
                 config_layout.setBackgroundColor(gray);
                 titleTv.setText("设 置");
                 if (fg_config == null) {
-                    fg_config = new Config_Fragment();
+                    fg_config = new ConfigFragment();
                     fragmentTransaction.add(R.id.content, fg_config);
                 } else {
                     fragmentTransaction.show(fg_config);
                 }
                 break;
             case 4:
-// fourthImage.setImageResource(R.drawable.XXXX);
                 tx_mine.setTextColor(dark);
                 mine_layout.setBackgroundColor(gray);
                 titleTv.setText("个人信息");
                 if (fg_mine == null) {
-                    fg_mine = new Mine_Fragment();
+                    fg_mine = new ClientInfoFragment();
                     fragmentTransaction.add(R.id.content, fg_mine);
                 } else {
                     fragmentTransaction.show(fg_mine);
@@ -292,17 +203,13 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     /**
      * 当选中其中一个选项卡时，其他选项卡重置为默认
      */
-    private void clearChioce() {
-// firstImage.setImageResource(R.drawable.XXX);
+    private void clearChoice() {
         tx_home.setTextColor(gray);
         home_layout.setBackgroundColor(whirt);
-// secondImage.setImageResource(R.drawable.XXX);
         tx_history.setTextColor(gray);
         history_layout.setBackgroundColor(whirt);
-// thirdImage.setImageResource(R.drawable.XXX);
         tx_trainstatus.setTextColor(gray);
         trainstatus_layout.setBackgroundColor(whirt);
-// fourthImage.setImageResource(R.drawable.XXX);
         tx_config.setTextColor(gray);
         config_layout.setBackgroundColor(whirt);
         tx_mine.setTextColor(gray);

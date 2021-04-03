@@ -12,10 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.fedclient.R;
 import com.fedclient.domain.ClientLog;
 import com.fedclient.domain.TaskPublished;
+import com.fedclient.ui.activity.HistoryDetailActivity;
 import com.fedclient.ui.activity.TaskDetailActivity;
 
 import java.util.List;
@@ -116,6 +118,11 @@ public class HistoryAdapter extends BaseAdapter {
                 intent.putExtra("curepoch",temp.getCurEpoch());
                 ((AppCompatActivity)context).startActivity(intent);
                 ((AppCompatActivity)context).finish();*/
+
+                Intent intent = new Intent(context, HistoryDetailActivity.class);
+                ((FragmentActivity)context).startActivity(intent);
+                ((FragmentActivity)context).finish();
+
 
             }
         });

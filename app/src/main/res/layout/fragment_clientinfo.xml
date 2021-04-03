@@ -7,38 +7,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg2">
 
-    <LinearLayout
-        android:id="@+id/layout_titlebar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorPrimary"
-        android:fitsSystemWindows="true"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:onClick="onBackward"
-            android:paddingLeft="18dp"
-            android:paddingRight="18dp"
-            android:src="@mipmap/arrow_back_white"
-            android:visibility="visible" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="#00000000"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/Back"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_portrait"
@@ -88,17 +56,6 @@
         android:layout_height="1dp"
         android:background="@color/grey"/>
 
-    <!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" >
-        <ListView
-            android:id="@+id/person_list"
-            android:layout_width="match_parent"
-            android:layout_height="570dp"></ListView>
-    </LinearLayout>
-    -->
 
     <!--用户名-->
     <LinearLayout
@@ -190,77 +147,6 @@
         android:layout_height="1dp"
         android:background="@color/grey"/>
 
-<!--    &lt;!&ndash;积分&ndash;&gt;
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
-
-        <TextView
-            android:id="@+id/Userscore_Text"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="@string/Userscore"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/tx_Userscore"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|end"
-            android:background="@color/transparent"
-            android:text="0"
-            android:textColor="@color/gray_dark"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey"/>
-
-    &lt;!&ndash;昵称&ndash;&gt;
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="@string/Nickname"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
-
-        <Button
-            android:id="@+id/btn_nickname"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|end"
-            android:background="@color/transparent"
-            android:text="@string/modify_hint"
-            android:textColor="@color/gray_dark"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    &lt;!&ndash;分割线&ndash;&gt;
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey"/>-->
 
     <!--密码-->
     <LinearLayout
@@ -461,80 +347,5 @@
 
     </LinearLayout>
 
-
-
-    <!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_gravity="bottom">
-        <RadioGroup
-            android:id="@+id/main_menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
-            <RadioButton
-                android:id="@+id/RB_home"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@drawable/renwuguanli"
-                android:gravity="center"
-                android:text="任务管理"
-                android:textAlignment="center"
-                android:textSize="10dp" />
-            <RadioButton
-                android:id="@+id/RB_history"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@drawable/lishi"
-                android:gravity="center"
-                android:text="历史记录"
-                android:textAlignment="center"
-                android:textSize="10dp" />
-
-            <RadioButton
-                android:id="@+id/RB_now"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@drawable/now"
-                android:gravity="center"
-                android:text="当前状态"
-                android:textAlignment="center"
-                android:textSize="10dp" />
-
-            <RadioButton
-                android:id="@+id/RB_shezhi"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@drawable/shezhi"
-                android:gravity="center"
-                android:text="设置"
-                android:textAlignment="center"
-                android:textSize="10dp" />
-
-            <RadioButton
-                android:id="@+id/RB_mine"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@drawable/mine"
-                android:gravity="center"
-                android:text="我的"
-                android:textAlignment="center"
-                android:textSize="10dp" />
-        </RadioGroup>
-    </LinearLayout>
-    -->
 
 </LinearLayout>

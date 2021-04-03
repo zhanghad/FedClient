@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.fedclient.R;
 import com.fedclient.domain.TaskPublished;
@@ -126,8 +127,8 @@ public class TaskPublishedAdapter extends BaseAdapter {
                 intent.putExtra("status",temp.getStatus());
                 intent.putExtra("curclient",temp.getCurClients());
                 intent.putExtra("curepoch",temp.getCurEpoch());
-                ((AppCompatActivity)context).startActivity(intent);
-                ((AppCompatActivity)context).finish();
+                context.startActivity(intent);
+                ((FragmentActivity)context).finish();
             }
         });
         return view;

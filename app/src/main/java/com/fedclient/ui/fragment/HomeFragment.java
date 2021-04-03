@@ -1,30 +1,19 @@
 package com.fedclient.ui.fragment;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.fedclient.R;
 import com.fedclient.constants.UrlConstants;
 import com.fedclient.domain.TaskPublished;
-import com.fedclient.ui.activity.HistoryActivity;
-import com.fedclient.ui.activity.HomeActivity;
-import com.fedclient.ui.activity.LoginActivity;
-import com.fedclient.ui.activity.RegisterActivity;
 import com.fedclient.ui.adapter.TaskPublishedAdapter;
 import com.fedclient.util.HttpUtil;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -40,7 +29,7 @@ import okhttp3.Callback;
 import okhttp3.HttpUrl;
 import okhttp3.Response;
 
-public class Home_Fragment extends Fragment{
+public class HomeFragment extends Fragment{
     private static final String TAG = "Home_Fragment";
 
     public ListView lv_project;
@@ -51,8 +40,6 @@ public class Home_Fragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
-
-
         initComponents(view);
         return view;
     }
@@ -61,6 +48,7 @@ public class Home_Fragment extends Fragment{
     private void initComponents(View view){
 //        list.clear();
         lv_project = (ListView)view.findViewById(R.id.lv_project);
+        Log.d(TAG, "initComponents: "+ lv_project);
 
         /**
          * 从服务端获取数据
@@ -87,13 +75,10 @@ public class Home_Fragment extends Fragment{
                                 taskPublisheds= new ArrayList<TaskPublished>();
                             }
 
-                            Log.d(TAG, "onResponse: "+taskPublisheds.toString());
-
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     Log.d(TAG, "onCreate: "+taskPublisheds.toString());
-                                    //getApplicationContext()
                                     list_item = new TaskPublishedAdapter(getActivity(),taskPublisheds,R.layout.view_tplist);
                                     lv_project.setAdapter(list_item);
                                 }

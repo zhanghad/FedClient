@@ -1,8 +1,6 @@
 package com.fedclient.ui.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,24 +13,27 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.fedclient.R;
 import com.fedclient.constants.AndroidConstants;
 import com.fedclient.constants.UrlConstants;
 import com.fedclient.domain.Client;
+import com.fedclient.domain.TaskPublished;
 import com.fedclient.manager.DeviceManager;
-import com.fedclient.receiver.BatteryReceiver;
 import com.fedclient.util.SharedPreferencesUtil;
 import com.fedclient.util.CommonUtil;
 import com.fedclient.util.CommonRequest;
 import com.fedclient.util.HttpUtil;
 import com.fedclient.manager.ClientManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.jetbrains.annotations.NotNull;
 //import org.litepal.LitePal;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.HttpUrl;
@@ -60,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initComponents();
         setListeners();
-//        LitePal.initialize(this);
 
         SharedPreferencesUtil spu = new SharedPreferencesUtil(this);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -75,9 +75,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
-
-//        ActivityCompat.requestPermissions(this,new String[]{
-//            Manifest.permission.READ_PHONE_STATE},1);
         DeviceManager.setMcontext(getApplicationContext());
         try {
             Log.i(TAG, "onCreate: "+ DeviceManager.getDeviceInstance().toString());
@@ -97,8 +94,6 @@ public class LoginActivity extends AppCompatActivity {
         btn_register = findViewById(R.id.btn_register);
         et_password.setInputType(129); //密码不可视
         isRememberPwd = findViewById(R.id.isRememberPwd);
-
-//        LitePal.getDatabase();
         ClientManager.clear();
     }
 
@@ -133,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
         password = CommonUtil.StringHandle(et_password.getText().toString());
 
         if(loginName.equals("")&&password.equals("")){
-            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -157,29 +152,21 @@ public class LoginActivity extends AppCompatActivity {
         HttpUtil.sendPost(url.toString(), request.toString(), new okhttp3.Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                String temp=response.body().string();
+                String data = response.body().string();
+                Type clientType = new TypeToken<Client>(){}.getType();
+                Client client= new Gson().fromJson(data,clientType);
                 // 登录成功
-                if (temp.equals(AndroidConstants.LOGIN_SUCCESS)) {
-                    /*
-                    // 查找本地数据库中是否已存在当前用户,不存在则新建用户并写入
-                    Client client = DataSupport.where("loginName=?", loginName).findFirst(Client.class);
-                    if(client == null){
-                        client = new Client();
-                        client.setLoginName(loginName);
-                        client.setPassword(password);
-                    }
-                    */
-
-                    Client client = new Client();
-                    client.setLoginName(loginName);
-                    client.setPassword(password);
-                    ClientManager.setCurrentClient(client);// 设置当前用户
-                    //跳转
-                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                if (client!=null) {
+                    Log.d(TAG, "onResponse: "+client.toString());
+                    ClientManager.setCurrentClient(client);
+                    showResponse(AndroidConstants.SUCCESS);
+                    DeviceManager.getDeviceInstance().setClientId(client.getClientId());
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }else {
-                    CommonUtil.makeToast(LoginActivity.this,resMsg);
+                    Log.d(TAG, "onResponse: LOGIN FAIL");
+                    showResponse(AndroidConstants.FAIL);
                 }
 
             }
@@ -209,8 +196,6 @@ public class LoginActivity extends AppCompatActivity {
     private String checkDataValid(String username,String pwd){
         if(TextUtils.isEmpty(username) | TextUtils.isEmpty(pwd))
             return getResources().getString(R.string.null_hint);
-/*        if(username.length() != 11 && !username.contains("@"))
-            return getResources().getString(R.string.account_invalid_hint);*/
         return "";
     }
 

@@ -3,7 +3,7 @@
     package="com.fedclient">
 
     <!--必备的权限-->
-    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+<!--    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,32 +26,25 @@
             android:label="Register Activity">
         </activity>
         <activity
-            android:name=".ui.activity.HomeActivity"
+            android:name=".ui.activity.MainActivity"
             android:label="Home Activity">
         </activity>
-        <activity
-            android:name=".ui.activity.HistoryActivity"
-            android:label="History Activity">
-        </activity>
-        <activity
-            android:name=".ui.activity.TrainStatusActivity"
-            android:label="TrainStatus Activity">
-        </activity>
-        <activity
-            android:name=".ui.activity.ClientInfoActivity"
-            android:label="ClientInfo Activity">
-        </activity>
-        <activity
-            android:name=".ui.activity.ConfigActivity"
-            android:label="Config Activity">
-        </activity>
+
         <activity
             android:name=".ui.activity.TaskDetailActivity"
             android:label="TaskDetail Activity">
         </activity>
         <activity
+            android:name=".ui.activity.HistoryDetailActivity"
+            android:label="HistoryDetail Activity">
+        </activity>
+        <activity
             android:name=".ui.activity.DataActivity"
             android:label="Data Activity">
+        </activity>
+        <activity
+            android:name=".ui.activity.ModifyPwdActivity"
+            android:label="ModifyPwd Activity">
         </activity>
 
 

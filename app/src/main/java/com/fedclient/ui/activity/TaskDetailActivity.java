@@ -142,7 +142,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         rb_td_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(TaskDetailActivity.this,HomeActivity.class);
+                Intent intent=new Intent(TaskDetailActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
